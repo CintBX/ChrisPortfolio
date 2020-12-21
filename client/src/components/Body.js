@@ -8,6 +8,7 @@ import {
   CardDeck,
   CardSubtitle,
   CardBody,
+  CardText,
   Container,
   Row,
   Col
@@ -50,8 +51,10 @@ const Body = () => {
                   <Card style={styles.card} key={ commission.id }>
                     <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
                     <CardBody>
-                      <CardTitle>{ commission.title }</CardTitle>
-                      <CardSubtitle>{ commission.price }</CardSubtitle>
+                      <CardText>
+                        <span style={styles.title}>{ commission.title }</span>
+                        <span style={styles.price}>{ commission.price }</span>
+                      </CardText>
                     </CardBody>
                   </Card>
                 </Col>
@@ -86,6 +89,15 @@ const styles = {
     width: 250,
     marginTop: 20,
     marginBottom: 20
+  },
+  title: {
+    float: 'left',
+    fontWeight: 600
+  },
+  price: {
+    float: 'right',
+    fontStyle: 'italic',
+    fontSize: '1.1em'
   }
 }
 
