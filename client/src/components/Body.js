@@ -38,7 +38,7 @@ const Body = props => {
 
         <CardDeck style={styles.cardGroup}>
           {
-            commissions.map(commission => (
+            commissions && commissions.map(commission => (
               <Row>
                 <Col>
                   <Card style={styles.card} key={ commission.id }>
@@ -46,7 +46,7 @@ const Body = props => {
                     <CardBody>
                       <CardText>
                         <span style={styles.title}>{ commission.title }</span>
-                        <span style={styles.price}>{ commission.price }</span>
+                        <span style={styles.price}>${ commission.price }</span>
                       </CardText>
                     </CardBody>
                   </Card>
