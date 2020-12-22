@@ -7,16 +7,18 @@ import { Container, Media } from 'reactstrap';
 import Header from './components/Header';
 import Body from './components/Body';
 import Footer from './components/Footer';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
-    <div style={styles.container}>
-      <Container fluid>
+    <Provider store={store}>
+      <Container fluid style={styles.container}>
         <Header />
         <Body />
         <Footer />
       </Container>
-    </div>
+    </Provider>
   );
 };
 

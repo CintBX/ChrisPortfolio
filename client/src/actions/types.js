@@ -1,0 +1,4 @@
+// Commission CRUD
+export const GET_COMMISSIONS = 'GET_COMMISSIONS';
+export const ADD_COMMISSION = 'ADD_COMMISSION';
+export const DELETE_COMMISSION = 'DELETE_COMMISSION';
