@@ -1,9 +1,4 @@
 import React from 'react';
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaYoutubeSquare
-} from 'react-icons/fa';
 import { MDBIcon, MDBContainer, MDBBtn } from 'mdbreact';
 
 const Footer = () => {
@@ -31,7 +26,7 @@ const styles = {
   container: {
     display: 'flex',
     justifyContent: 'center',
-    padding: 40
+    padding: 50
   },
   button: {
     marginLeft: 15,
