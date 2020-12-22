@@ -8,17 +8,22 @@ import { MDBIcon, MDBContainer, MDBBtn } from 'mdbreact';
 
 const Footer = () => {
   return (
-    <MDBContainer style={styles.container}>
-      <MDBBtn size="lg" social="fb" color="blue" style={styles.button}>
-        <MDBIcon fab icon="facebook-f" style={styles.icon} />
-      </MDBBtn>
-      <MDBBtn size="lg" social="ins" className="peach-gradient" style={styles.button}>
-        <MDBIcon fab icon="instagram" style={styles.icon} />
-      </MDBBtn>
-      <MDBBtn size="lg" social="yt" color="red" style={styles.button}>
-        <MDBIcon fab icon="youtube" style={styles.icon} />
-      </MDBBtn>
-    </MDBContainer>
+    <div>
+      <MDBContainer style={styles.container}>
+        <MDBBtn size="lg" social="fb" color="blue" style={styles.button}>
+          <MDBIcon fab icon="facebook-f" className="pr-1" style={styles.icon} /> Facebook
+        </MDBBtn>
+        <MDBBtn size="lg" social="ins" className="peach-gradient" style={styles.button}>
+          <MDBIcon fab icon="instagram" className="pr-1" style={styles.icon} /> Instagram
+        </MDBBtn>
+        <MDBBtn size="lg" social="yt" color="red" style={styles.button}>
+          <MDBIcon fab icon="youtube" className="pr-1" style={styles.icon} /> Youtube
+        </MDBBtn>
+        <MDBBtn size="lg" social="email" color="info" style={styles.button}>
+          <MDBIcon icon="envelope" className="pr-1" style={styles.icon} /> Email
+        </MDBBtn>
+      </MDBContainer>
+    </div>
   )
 }
 
@@ -35,7 +40,9 @@ const styles = {
   icon: {
     fontSize: '1.5em',
   },
-  emailBtn: {}
+  emailBtn: {
+    fontSize: '1.6em'
+  }
 }
 
 export default Footer;
