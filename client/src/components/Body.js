@@ -15,9 +15,10 @@ import PropTypes from 'prop-types';
 
 const Body = props => {
   const dispatch = useDispatch();
-  const { commissions } = useSelector(
+  const { commissions, loading } = useSelector(
     state => ({
-      commissions: state.commission.commissions
+      commissions: state.commission.commissions,
+      loading: state.commission.loading
     })
   );
 
@@ -25,38 +26,42 @@ const Body = props => {
     dispatch(getCommissions());
   }, []);
 
-  return (
-    <div style={styles.container}>
-      <div style={styles.buttonGroup}>
-        <span style={styles.button}>
-          <Button color="primary" size="lg">Commissions</Button>
-        </span>
-        <span style={styles.button}>
-          <Button color="primary" size="lg">Projects</Button>
-        </span>
+  if(loading) {
+    return <h1>Your commissions are loading.  Please wait..</h1>
+  } else {
+    return (
+      <div style={styles.container}>
+        <div style={styles.buttonGroup}>
+          <span style={styles.button}>
+            <Button color="primary" size="lg">Commissions</Button>
+          </span>
+          <span style={styles.button}>
+            <Button color="primary" size="lg">Projects</Button>
+          </span>
+        </div>
+  
+          <CardDeck style={styles.cardGroup}>
+            {
+              commissions && commissions.map(commission => (
+                <Row>
+                  <Col>
+                    <Card style={styles.card} key={ commission.id }>
+                      <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
+                      <CardBody>
+                        <CardText>
+                          <span style={styles.title}>{ commission.title }</span>
+                          <span style={styles.price}>${ commission.price }</span>
+                        </CardText>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                </Row>
+              ))
+            }
+          </CardDeck>
       </div>
-
-        <CardDeck style={styles.cardGroup}>
-          {
-            commissions && commissions.map(commission => (
-              <Row>
-                <Col>
-                  <Card style={styles.card} key={ commission.id }>
-                    <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
-                    <CardBody>
-                      <CardText>
-                        <span style={styles.title}>{ commission.title }</span>
-                        <span style={styles.price}>${ commission.price }</span>
-                      </CardText>
-                    </CardBody>
-                  </Card>
-                </Col>
-              </Row>
-            ))
-          }
-        </CardDeck>
-    </div>
-  )
+    )
+  }
 }
 
 const styles = {

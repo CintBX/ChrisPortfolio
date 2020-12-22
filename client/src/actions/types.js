@@ -7,3 +7,6 @@ export const DELETE_COMMISSION = 'DELETE_COMMISSION';
 // Error Handling
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
+// CRUD Errors
+export const ADD_COMMISSION_FAIL = 'ADD_COMMISSION_FAIL';
