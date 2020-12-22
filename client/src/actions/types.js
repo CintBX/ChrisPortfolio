@@ -3,3 +3,7 @@ export const GET_COMMISSIONS = 'GET_COMMISSIONS';
 export const COMMISSIONS_LOADING = 'COMMISSIONS_LOADING';
 export const ADD_COMMISSION = 'ADD_COMMISSION';
 export const DELETE_COMMISSION = 'DELETE_COMMISSION';
+
+// Error Handling
+export const GET_ERRORS = 'GET_ERRORS';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
