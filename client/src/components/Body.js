@@ -36,10 +36,10 @@ const Body = () => {
     <div style={styles.container}>
       <div style={styles.buttonGroup}>
         <span style={styles.button}>
-          <Button size="lg">Commissions</Button>
+          <Button color="primary" size="lg">Commissions</Button>
         </span>
         <span style={styles.button}>
-          <Button size="lg">Projects</Button>
+          <Button color="primary" size="lg">Projects</Button>
         </span>
       </div>
 
