@@ -11,6 +11,7 @@ import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import NewCommissionForm from './components/commission/new';
 import CommissionBody from './components/CommissionBody';
+import CommissionShowPage from './components/commission/show';
 import ProjectBody from './components/ProjectBody';
 import Footer from './components/Footer';
 
@@ -20,6 +21,7 @@ function App() {
       <Container fluid style={styles.container}>
         <Header />
         <Switch>
+          <Route path="/show-commission/:id" component={CommissionShowPage} />
           <Route path="/new-commission" component={NewCommissionForm} />
           <Route path="/project-list" component={ProjectBody} />
           <Route exact path="/" component={CommissionBody} />

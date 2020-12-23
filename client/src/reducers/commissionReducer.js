@@ -1,19 +1,23 @@
 import {
-  GET_COMMISSIONS,
   COMMISSIONS_LOADING,
+  COMMISSION_LOADING,
+  GET_COMMISSIONS,
   ADD_COMMISSION,
   ADD_COMMISSION_FAIL,
+  SHOW_COMMISSION,
   DELETE_COMMISSION
 } from '../actions/types';
 
 const initialState = {
   commissions: [],
+  showCommission: {},
 	loading: false,
 };
 
 export default function(state = initialState, action) {
   switch(action.type) {
     case COMMISSIONS_LOADING:
+    case COMMISSION_LOADING:
       return {
         ...state,
         loading: true
@@ -30,6 +34,13 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				commissions: [...state.commissions, action.payload]
+      };
+
+    case SHOW_COMMISSION:
+      return {
+        ...state,
+        showCommission: action.payload,
+        loading: false
       };
       
     case ADD_COMMISSION_FAIL:

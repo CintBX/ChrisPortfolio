@@ -11,6 +11,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { getCommissions } from '../actions/commissionActions';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const CommissionBody = props => {
   const dispatch = useDispatch();
@@ -35,15 +36,17 @@ const CommissionBody = props => {
             commissions && commissions.map(commission => (
               <Row>
                 <Col>
-                  <Card style={styles.card} key={ commission.id }>
-                    <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
-                    <CardBody>
-                      <CardText>
-                        <span style={styles.title}>{ commission.title }</span>
-                        <span style={styles.price}>${ commission.price }</span>
-                      </CardText>
-                    </CardBody>
-                  </Card>
+                  <Link to={`/show-commission/${commission._id}`}>
+                    <Card style={styles.card} key={ commission._id }>
+                      <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
+                      <CardBody>
+                        <CardText>
+                          <span style={styles.title}>{ commission.title }</span>
+                          <span style={styles.price}>${ commission.price }</span>
+                        </CardText>
+                      </CardBody>
+                    </Card>
+                  </Link>
                 </Col>
               </Row>
             ))

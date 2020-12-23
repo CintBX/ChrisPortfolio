@@ -1,8 +1,10 @@
 import {
-  GET_COMMISSIONS,
   COMMISSIONS_LOADING,
+  COMMISSION_LOADING,
+  GET_COMMISSIONS,
   ADD_COMMISSION,
   ADD_COMMISSION_FAIL,
+  SHOW_COMMISSION,
   DELETE_COMMISSION
 } from '../actions/types';
 import axios from 'axios';
@@ -27,8 +29,6 @@ export const addCommission = commission => dispatch => {
 			"Content-Type": "application/json"
 		}
   };
-  
-  // const body = JSON.stringify(commission);
 
   axios
     .post('/commissions', commission, config)
@@ -47,4 +47,15 @@ export const addCommission = commission => dispatch => {
       type: GET_COMMISSIONS,
       payload: res.data
     }));
+};
+
+export const showCommission = id => dispatch => {
+  dispatch({ type: COMMISSION_LOADING });
+  axios
+    .get(`/commissions/${id}`)
+    .then(res => dispatch({
+      type: SHOW_COMMISSION,
+      payload: res.data
+    }))
+    .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
