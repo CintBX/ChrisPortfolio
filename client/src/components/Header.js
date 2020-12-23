@@ -8,7 +8,6 @@ const Header = () => {
       <Row style={styles.container}>
         <Col lg="4">
           <div>
-            {/* <img src="https://via.placeholder.com/350"/> */}
             <img src={profilePic} alt="Profile Picture" style={styles.image} />
           </div>
         </Col>
