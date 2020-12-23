@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import {
   Card,
-  Button,
   CardImg,
   CardDeck,
   CardBody,
@@ -13,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCommissions } from '../actions/commissionActions';
 import PropTypes from 'prop-types';
 
-const Body = props => {
+const CommissionBody = props => {
   const dispatch = useDispatch();
   const { commissions, loading } = useSelector(
     state => ({
@@ -27,7 +26,7 @@ const Body = props => {
   }, []);
 
   if(loading) {
-    return <h1>Your commissions are loading.  Please wait..</h1>
+    return <h1 style={styles.container}>Your commissions are loading.  Please wait..</h1>
   } else {
     return (
       <div style={styles.container}>
@@ -80,12 +79,12 @@ const styles = {
   }
 }
 
-Body.propTypes = {
+CommissionBody.propTypes = {
   getCommissions: PropTypes.func.isRequired,
   commission: PropTypes.object.isRequired
 }
 
-export default Body;
+export default CommissionBody;
 
 
 /* If you decide to use Class Components just in case

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import profilePic from '../images/pr8.jpg';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
       <Row style={styles.container}>
         <Col lg="4">
           <div>
-            <img src={profilePic} alt="Profile Picture" style={styles.image} />
+            <img src={profilePic} alt="Profile" style={styles.image} />
           </div>
         </Col>
         <Col lg="8">
@@ -39,10 +40,18 @@ const Header = () => {
 
           <div style={styles.buttonGroup}>
             <span style={styles.button}>
-              <Button color="primary" size="lg">Collection</Button>
+              <NavLink exact to="/" activeStyle={styles.test}>
+                {/* <Button color="primary" size="lg"> */}
+                  Collection
+                {/* </Button> */}
+              </NavLink>
             </span>
             <span style={styles.button}>
-              <Button color="primary" size="lg">Passion Projects</Button>
+              <NavLink to="/project-list" activeStyle={styles.test}>
+                {/* <Button color="primary" size="lg"> */}
+                  Passion Projects
+                {/* </Button> */}
+              </NavLink>
             </span>
           </div>
         </Col>
@@ -70,6 +79,10 @@ const styles = {
     paddingLeft: 20,
     paddingRight: 20
   },
+  active: {
+    fontWeight: 'bold',
+    fontSize: '2em'
+  }
 }
 
 export default Header;
