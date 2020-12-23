@@ -76,10 +76,10 @@ const styles = {
   }
 }
 
-CommissionBody.propTypes = {
-  getCommissions: PropTypes.func.isRequired,
-  commission: PropTypes.object.isRequired
-}
+// CommissionBody.propTypes = {
+//   getCommissions: PropTypes.func.isRequired,
+//   commission: PropTypes.object.isRequired
+// }
 
 export default CommissionBody;
 

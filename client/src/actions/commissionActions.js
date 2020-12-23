@@ -28,10 +28,10 @@ export const addCommission = commission => dispatch => {
 		}
   };
   
-  const body = JSON.stringify(commission);
+  // const body = JSON.stringify(commission);
 
   axios
-    .post('/commissions', body, config)
+    .post('/commissions', commission, config)
     .then(() => dispatch({
       type: ADD_COMMISSION,
       payload: commission
@@ -40,5 +40,11 @@ export const addCommission = commission => dispatch => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: ADD_COMMISSION_FAIL });
     });
-  getCommissions();
+  
+  axios
+    .get('/commissions')
+    .then(res => dispatch({
+      type: GET_COMMISSIONS,
+      payload: res.data
+    }));
 };
