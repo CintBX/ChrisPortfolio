@@ -31,34 +31,25 @@ const Body = props => {
   } else {
     return (
       <div style={styles.container}>
-        <div style={styles.buttonGroup}>
-          <span style={styles.button}>
-            <Button color="primary" size="lg">Commissions</Button>
-          </span>
-          <span style={styles.button}>
-            <Button color="primary" size="lg">Projects</Button>
-          </span>
-        </div>
-  
-          <CardDeck style={styles.cardGroup}>
-            {
-              commissions && commissions.map(commission => (
-                <Row>
-                  <Col>
-                    <Card style={styles.card} key={ commission.id }>
-                      <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
-                      <CardBody>
-                        <CardText>
-                          <span style={styles.title}>{ commission.title }</span>
-                          <span style={styles.price}>${ commission.price }</span>
-                        </CardText>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-              ))
-            }
-          </CardDeck>
+        <CardDeck style={styles.cardGroup}>
+          {
+            commissions && commissions.map(commission => (
+              <Row>
+                <Col>
+                  <Card style={styles.card} key={ commission.id }>
+                    <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
+                    <CardBody>
+                      <CardText>
+                        <span style={styles.title}>{ commission.title }</span>
+                        <span style={styles.price}>${ commission.price }</span>
+                      </CardText>
+                    </CardBody>
+                  </Card>
+                </Col>
+              </Row>
+            ))
+          }
+        </CardDeck>
       </div>
     )
   }
@@ -67,16 +58,6 @@ const Body = props => {
 const styles = {
   container: {
     paddingTop: 50
-  },
-  buttonGroup: {
-    paddingBottom: 40,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  button: {
-    paddingLeft: 20,
-    paddingRight: 20
   },
   cardGroup: {
     color: 'black',

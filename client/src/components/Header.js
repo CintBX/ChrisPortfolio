@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 import profilePic from '../images/pr8.jpg';
 
 const Header = () => {
@@ -37,6 +37,15 @@ const Header = () => {
               perspective.
             </p>
           </div>
+
+          <div style={styles.buttonGroup}>
+            <span style={styles.button}>
+              <Button color="primary" size="lg">Collection</Button>
+            </span>
+            <span style={styles.button}>
+              <Button color="primary" size="lg">Passion Projects</Button>
+            </span>
+          </div>
         </Col>
       </Row>
     </div>
@@ -51,8 +60,17 @@ const styles = {
     width: '100%'
   },
   text: {
-    paddingTop: 40,
-  }
+    paddingTop: 60,
+  },
+  buttonGroup: {
+    paddingTop: 60,
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  button: {
+    paddingLeft: 20,
+    paddingRight: 20
+  },
 }
 
 export default Header;
