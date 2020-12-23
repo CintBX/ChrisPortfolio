@@ -39,6 +39,9 @@ const Header = () => {
           </div>
 
           <div style={styles.linkGroup}>
+            <NavLink to="/new-commission" style={styles.link} activeStyle={styles.active}>
+              New Commission
+            </NavLink>
             <NavLink exact to="/" style={styles.link} activeStyle={styles.active}>
               Art Collection
             </NavLink>
@@ -54,7 +57,8 @@ const Header = () => {
 
 const styles = {
   container: {
-    padding: 10
+    padding: 10,
+    paddingBottom: 60
   },
   image: {
     width: '100%'

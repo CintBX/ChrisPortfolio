@@ -29,7 +29,7 @@ const ProjectBody = props => {
   //   return <h1>Your projects are loading.  Please wait..</h1>
   // } else {
     return (
-      <div style={styles.container}>
+      <div>
         <h1>Projects area</h1>
       </div>
     )
@@ -37,9 +37,6 @@ const ProjectBody = props => {
 }
 
 const styles = {
-  container: {
-    paddingTop: 50
-  },
   cardGroup: {
     color: 'black',
     justifyContent: 'center',

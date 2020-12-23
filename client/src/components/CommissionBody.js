@@ -29,7 +29,7 @@ const CommissionBody = props => {
     return <h1 style={styles.container}>Your commissions are loading.  Please wait..</h1>
   } else {
     return (
-      <div style={styles.container}>
+      <div>
         <CardDeck style={styles.cardGroup}>
           {
             commissions && commissions.map(commission => (
@@ -55,9 +55,6 @@ const CommissionBody = props => {
 }
 
 const styles = {
-  container: {
-    paddingTop: 50
-  },
   cardGroup: {
     color: 'black',
     justifyContent: 'center',
