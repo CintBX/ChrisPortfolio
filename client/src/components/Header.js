@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import profilePic from '../images/pr8.jpg';
 import { NavLink } from 'react-router-dom';
 
@@ -38,21 +38,13 @@ const Header = () => {
             </p>
           </div>
 
-          <div style={styles.buttonGroup}>
-            <span style={styles.button}>
-              <NavLink exact to="/" activeStyle={styles.test}>
-                {/* <Button color="primary" size="lg"> */}
-                  Collection
-                {/* </Button> */}
-              </NavLink>
-            </span>
-            <span style={styles.button}>
-              <NavLink to="/project-list" activeStyle={styles.test}>
-                {/* <Button color="primary" size="lg"> */}
-                  Passion Projects
-                {/* </Button> */}
-              </NavLink>
-            </span>
+          <div style={styles.linkGroup}>
+            <NavLink exact to="/" style={styles.link} activeStyle={styles.active}>
+              Art Collection
+            </NavLink>
+            <NavLink to="/project-list" style={styles.link} activeStyle={styles.active}>
+              Passion Projects
+            </NavLink>
           </div>
         </Col>
       </Row>
@@ -70,18 +62,19 @@ const styles = {
   text: {
     paddingTop: 60,
   },
-  buttonGroup: {
+  linkGroup: {
     paddingTop: 60,
     display: 'flex',
     justifyContent: 'center'
   },
-  button: {
-    paddingLeft: 20,
-    paddingRight: 20
+  link: {
+    padding: 20,
+    color: 'white'
   },
   active: {
-    fontWeight: 'bold',
-    fontSize: '2em'
+    backgroundColor: '#3FBADA',
+    color: 'black',
+    fontWeight: '300'
   }
 }
 
