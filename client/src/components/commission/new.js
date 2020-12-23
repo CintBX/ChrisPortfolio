@@ -10,6 +10,7 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addCommission } from '../../actions/commissionActions';
+import { Redirect } from 'react-router-dom';
 
 class NewCommissionForm extends Component {
   constructor(props) {
@@ -19,7 +20,16 @@ class NewCommissionForm extends Component {
     this.state = {
       title: "",
       description: "",
-      price: 0
+      price: 0,
+      redirectToHome: false
+    };
+  };
+
+  componentDidMount() {
+    if(this.state.redirectToHome) {
+      this.setState({
+        redirectToHome: false
+      });
     };
   };
 
@@ -47,63 +57,68 @@ class NewCommissionForm extends Component {
     this.setState({
       title: "",
       description: "",
-      price: 0
+      price: 0,
+      redirectToHome: true
     })
   };
 
   render() {
+    const redirectToHome = this.state.redirectToHome;
     return (
-      <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
-        <h1 style={styles.title}>Upload a new Commission</h1>
-        <FormGroup row>
-          <Label for="title" sm={2}>Title</Label>
-          <Col sm={10}>
-            <Input
-              type="text"
-              name="title"
-              id="title"
-              autoFocus
-              required
-              onChange={this.handleChange}
-              value={this.state.title}
-            />
-          </Col>
-        </FormGroup>
+      <div>
+        { redirectToHome ? <Redirect to="/" /> : null }
+        <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
+          <h1 style={styles.title}>Upload a new Commission</h1>
+          <FormGroup row>
+            <Label for="title" sm={2}>Title</Label>
+            <Col sm={10}>
+              <Input
+                type="text"
+                name="title"
+                id="title"
+                autoFocus
+                required
+                onChange={this.handleChange}
+                value={this.state.title}
+              />
+            </Col>
+          </FormGroup>
 
-        <FormGroup row>
-          <Label for="description" sm={2}>Description</Label>
-          <Col sm={10}>
-            <Input
-              type="textarea"
-              name="description"
-              id="description"
-              required
-              onChange={this.handleChange}
-              value={this.state.description}
-            />
-          </Col>
-        </FormGroup>
+          <FormGroup row>
+            <Label for="description" sm={2}>Description</Label>
+            <Col sm={10}>
+              <Input
+                type="textarea"
+                name="description"
+                id="description"
+                required
+                onChange={this.handleChange}
+                value={this.state.description}
+              />
+            </Col>
+          </FormGroup>
 
-        <FormGroup row>
-          <Label for="price" sm={2}>Price</Label>
-          <Col sm={10}>
-            <Input
-              type="number"
-              name="price"
-              id="price"
-              min={0}
-              onChange={this.handleChange}
-              value={this.state.price}
-            />
-          </Col>
-        </FormGroup>
+          <FormGroup row>
+            <Label for="price" sm={2}>Price</Label>
+            <Col sm={10}>
+              <Input
+                type="number"
+                name="price"
+                id="price"
+                min={0}
+                onChange={this.handleChange}
+                value={this.state.price}
+              />
+            </Col>
+          </FormGroup>
 
-        <FormGroup row>
-          <Col sm={10}>
-            <Button outline color="info" style={styles.submitButton}>Submit</Button>
-          </Col>
-        </FormGroup>
-      </Form>
+          <FormGroup row>
+            <Col sm={10}>
+              <Button outline color="info" style={styles.submitButton}>Submit</Button>
+            </Col>
+          </FormGroup>
+        </Form>
+      </div>
     );
   };
 };
