@@ -9,10 +9,10 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
+import NewCommissionForm from './components/commission/new';
 import CommissionBody from './components/CommissionBody';
 import ProjectBody from './components/ProjectBody';
 import Footer from './components/Footer';
-import NewCommission from './components/commission/new';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
       <Container fluid style={styles.container}>
         <Header />
         <Switch>
-          <Route path="/new-commission" component={NewCommission} />
+          <Route path="/new-commission" component={NewCommissionForm} />
           <Route path="/project-list" component={ProjectBody} />
           <Route exact path="/" component={CommissionBody} />
         </Switch>
