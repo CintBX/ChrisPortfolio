@@ -42,6 +42,9 @@ const Header = () => {
             <NavLink to="/new-commission" style={styles.link} activeStyle={styles.active}>
               New Commission
             </NavLink>
+            <NavLink to="/new-project" style={styles.link} activeStyle={styles.active}>
+              New Project
+            </NavLink>
             <NavLink exact to="/" style={styles.link} activeStyle={styles.active}>
               Art Collection
             </NavLink>

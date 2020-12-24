@@ -21,14 +21,14 @@ class NewCommissionForm extends Component {
       title: "",
       description: "",
       price: "",
-      redirectToHome: false
+      redirectToCommissions: false
     };
   };
 
   componentDidMount() {
-    if(this.state.redirectToHome) {
+    if(this.state.redirectToCommissions) {
       this.setState({
-        redirectToHome: false
+        redirectToCommissions: false
       });
     };
   };
@@ -58,15 +58,15 @@ class NewCommissionForm extends Component {
       title: "",
       description: "",
       price: "",
-      redirectToHome: true
+      redirectToCommissions: true
     })
   };
 
   render() {
-    const redirectToHome = this.state.redirectToHome;
+    const redirectToCommissions = this.state.redirectToCommissions;
     return (
       <div>
-        { redirectToHome ? <Redirect to="/" /> : null }
+        { redirectToCommissions ? <Redirect to="/" /> : null }
         <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
           <h1 style={styles.title}>Upload a new Commission</h1>
           <FormGroup row>
