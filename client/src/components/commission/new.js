@@ -20,7 +20,7 @@ class NewCommissionForm extends Component {
     this.state = {
       title: "",
       description: "",
-      price: 0,
+      price: "",
       redirectToHome: false
     };
   };
@@ -57,7 +57,7 @@ class NewCommissionForm extends Component {
     this.setState({
       title: "",
       description: "",
-      price: 0,
+      price: "",
       redirectToHome: true
     })
   };

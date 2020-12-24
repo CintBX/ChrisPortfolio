@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { showCommission } from '../../actions/commissionActions';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 // IDEA
 // Make this whole thing a modal.  It'll display The IMAGE (if it's larger) and description
@@ -41,8 +42,16 @@ const CommissionShowPage = props => {
               />
             </Col>
             <Col lg={7} xl={7}>
-              <h1>{ commission.title }</h1>
-              <p>{ commission.description }</p>
+              <h1><span style={styles.softenTone}>Title: </span>{ commission.title }</h1>
+              <h3><span style={styles.softenTone}>Sold for: </span>${ commission.price }</h3>
+              <h3><span style={styles.softenTone}>About this piece: </span></h3>
+              <p>
+                { commission.description }
+              </p>
+              <br/>
+              <Link to={`/edit-commission/${commission._id}`}>
+                <Button style={styles.editButton} outline color="warning">Edit</Button>
+              </Link>
             </Col>
           </Row>
         </Container>
@@ -56,6 +65,12 @@ const styles = {
     paddingLeft: '15%',
     paddingRight: '10%',
     color: "white",
+  },
+  editButton: {
+    padding: 20
+  },
+  softenTone: {
+    color: "lightgrey"
   }
 }
 

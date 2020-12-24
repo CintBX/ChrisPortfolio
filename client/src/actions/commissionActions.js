@@ -5,6 +5,8 @@ import {
   ADD_COMMISSION,
   ADD_COMMISSION_FAIL,
   SHOW_COMMISSION,
+  EDIT_COMMISSION,
+  EDIT_COMMISSION_FAIL,
   DELETE_COMMISSION
 } from '../actions/types';
 import axios from 'axios';
@@ -29,7 +31,6 @@ export const addCommission = commission => dispatch => {
 			"Content-Type": "application/json"
 		}
   };
-
   axios
     .post('/commissions', commission, config)
     .then(() => dispatch({
@@ -39,8 +40,7 @@ export const addCommission = commission => dispatch => {
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: ADD_COMMISSION_FAIL });
-    });
-  
+    });  
   axios
     .get('/commissions')
     .then(res => dispatch({
@@ -48,6 +48,7 @@ export const addCommission = commission => dispatch => {
       payload: res.data
     }));
 };
+
 
 export const showCommission = id => dispatch => {
   dispatch({ type: COMMISSION_LOADING });
@@ -58,4 +59,32 @@ export const showCommission = id => dispatch => {
       payload: res.data
     }))
     .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+
+export const editCommission = ({ _id, title, description, price }) => dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  const body = JSON.stringify({ title, description, price });
+  axios
+    .post(`/commissions/${_id}`, body, config)
+    .then(res => dispatch({
+      type: EDIT_COMMISSION,
+      payload: res.data
+    }))
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: EDIT_COMMISSION_FAIL
+      });
+    });
+  axios
+    .get('/commissions')
+    .then(res => dispatch({
+      type: GET_COMMISSIONS,
+      payload: res.data
+    }));
 };

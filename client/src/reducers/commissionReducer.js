@@ -5,6 +5,8 @@ import {
   ADD_COMMISSION,
   ADD_COMMISSION_FAIL,
   SHOW_COMMISSION,
+  EDIT_COMMISSION,
+  EDIT_COMMISSION_FAIL,
   DELETE_COMMISSION
 } from '../actions/types';
 
@@ -44,6 +46,8 @@ export default function(state = initialState, action) {
       };
       
     case ADD_COMMISSION_FAIL:
+    case EDIT_COMMISSION:
+    case EDIT_COMMISSION_FAIL:
       return { ...state };
 
     default:

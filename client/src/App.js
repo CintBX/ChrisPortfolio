@@ -9,10 +9,11 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
-import NewCommissionForm from './components/commission/new';
 import CommissionBody from './components/CommissionBody';
-import CommissionShowPage from './components/commission/show';
 import ProjectBody from './components/ProjectBody';
+import NewCommissionForm from './components/commission/new';
+import CommissionShowPage from './components/commission/show';
+import EditCommissionForm from './components/commission/edit';
 import Footer from './components/Footer';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Container fluid style={styles.container}>
         <Header />
         <Switch>
+          <Route path="/edit-commission/:id" component={EditCommissionForm} />
           <Route path="/show-commission/:id" component={CommissionShowPage} />
           <Route path="/new-commission" component={NewCommissionForm} />
           <Route path="/project-list" component={ProjectBody} />
