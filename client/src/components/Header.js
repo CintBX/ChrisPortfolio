@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   Row,
   Col,
+  Button,
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -48,6 +49,7 @@ const Header = () => {
           </div>
 
           <div style={styles.linkGroup}>
+            {/* Use this if Chris wants the ability to add new Projects
             <ButtonDropdown style={styles.dropdown} isOpen={dropDown} toggle={toggle}>
               <DropdownToggle caret color="blue">Create New </DropdownToggle>
               <DropdownMenu>
@@ -58,8 +60,12 @@ const Header = () => {
                   <Link to="/new-project">Project</Link>
                 </DropdownItem>
               </DropdownMenu>
-            </ButtonDropdown>
+            </ButtonDropdown> 
+            */}
 
+            <NavLink to="/new-commission" style={styles.link} activeStyle={styles.active}>
+              Upload Your Work
+            </NavLink>
             <NavLink exact to="/" style={styles.link} activeStyle={styles.active}>
               Art Collection
             </NavLink>
@@ -95,6 +101,9 @@ const styles = {
   },
   dropdown: {
     paddingRight: 10
+  },
+  button: {
+    paddingRight: 20
   },
   active: {
     backgroundColor: '#3FBADA',
