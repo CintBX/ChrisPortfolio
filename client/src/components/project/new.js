@@ -68,9 +68,9 @@ class NewProjectForm extends Component {
       <div>
         { redirectToProjects ? <Redirect to="/project-list" /> : null }
         <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
-          <h1 style={styles.title}>Create your new Project</h1>
+          <h1 style={styles.title}>New Big Project?</h1>
           <FormGroup row>
-            <Label for="title" sm={2}>Title</Label>
+            <Label for="title" sm={2}>What's it called?</Label>
             <Col sm={10}>
               <Input
                 type="text"
@@ -85,7 +85,7 @@ class NewProjectForm extends Component {
           </FormGroup>
 
           <FormGroup row>
-            <Label for="description" sm={2}>Description</Label>
+            <Label for="description" sm={2}>Talk about it</Label>
             <Col sm={10}>
               <Input
                 type="textarea"
