@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MDBIcon, MDBContainer, MDBBtn } from 'mdbreact';
+import { Link } from 'react-router-dom';
 
 class Footer extends Component {
   render() {
@@ -11,7 +12,7 @@ class Footer extends Component {
               href="https://www.facebook.com/chris.d.3150"
               target="_blank"
               ref="noreferrer noopener"
-              style={styles.socialLink}
+              style={styles.link}
             >
               <MDBIcon fab icon="facebook-f" className="pr-1" style={styles.icon} /> Facebook
             </a>
@@ -22,7 +23,7 @@ class Footer extends Component {
               href="https://www.instagram.com/virtuoso_lume/"
               target="_blank"
               ref="noreferrer noopener"
-              style={styles.socialLink}
+              style={styles.link}
             >
               <MDBIcon fab icon="instagram" className="pr-1" style={styles.icon} /> Instagram
             </a>
@@ -33,14 +34,16 @@ class Footer extends Component {
               href="https://www.youtube.com/channel/UCj8pYnnOtWp5OKHzVOh0R3A"
               target="_blank"
               ref="noreferrer noopener"
-              style={styles.socialLink}
+              style={styles.link}
             >
               <MDBIcon fab icon="youtube" className="pr-1" style={styles.icon} /> Youtube
             </a>
           </MDBBtn>
   
           <MDBBtn size="lg" social="email" color="info" style={styles.button}>
-            <MDBIcon icon="envelope" className="pr-1" style={styles.icon} /> Email
+            <Link to="/contact-me" style={styles.link}>
+              <MDBIcon icon="envelope" className="pr-1" style={styles.icon} /> Email
+            </Link>
           </MDBBtn>
         </MDBContainer>
       </div>
@@ -64,7 +67,7 @@ const styles = {
   emailBtn: {
     fontSize: '1.6em'
   },
-  socialLink: {
+  link: {
     color: 'white'
   }
 };

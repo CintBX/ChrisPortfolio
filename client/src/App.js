@@ -17,6 +17,7 @@ import ProjectBody from './components/ProjectBody';
 // import NewProjectForm from './components/project/new';
 // import EditProjectForm from './components/project/edit';
 import Footer from './components/Footer';
+import ContactMe from './components/ContactMe';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Switch>
           {/* <Route path="/edit-project/:id" component={EditProjectForm} /> */}
           {/* <Route path="/new-project" component={NewProjectForm} /> */}
+          <Route path="/contact-me" component={ContactMe} />
           <Route path="/project-list" component={ProjectBody} />
           <Route path="/edit-commission/:id" component={EditCommissionForm} />
           <Route path="/show-commission/:id" component={CommissionShowPage} />
