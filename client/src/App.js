@@ -10,10 +10,12 @@ import store from './store';
 import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import CommissionBody from './components/CommissionBody';
-import ProjectBody from './components/ProjectBody';
 import NewCommissionForm from './components/commission/new';
 import CommissionShowPage from './components/commission/show';
 import EditCommissionForm from './components/commission/edit';
+import ProjectBody from './components/ProjectBody';
+import NewProjectForm from './components/project/new';
+import EditProjectForm from './components/project/edit';
 import Footer from './components/Footer';
 
 function App() {
@@ -22,10 +24,12 @@ function App() {
       <Container fluid style={styles.container}>
         <Header />
         <Switch>
+          <Route path="/edit-project/:id" component={EditProjectForm} />
+          <Route path="/new-project" component={NewProjectForm} />
+          <Route path="/project-list" component={ProjectBody} />
           <Route path="/edit-commission/:id" component={EditCommissionForm} />
           <Route path="/show-commission/:id" component={CommissionShowPage} />
           <Route path="/new-commission" component={NewCommissionForm} />
-          <Route path="/project-list" component={ProjectBody} />
           <Route exact path="/" component={CommissionBody} />
         </Switch>
         <Footer />
