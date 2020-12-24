@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Row,
-  Col,
-  Button,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  Col
+  // Button,
+  // ButtonDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem
 } from 'reactstrap';
 import profilePic from '../images/pr8.jpg';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
-  const [dropDown, setDropDown] = useState(false);
-  const toggle = () => setDropDown(!dropDown);
+  // const [dropDown, setDropDown] = useState(false);
+  // const toggle = () => setDropDown(!dropDown);
   return (
     <div>
       <Row style={styles.container}>

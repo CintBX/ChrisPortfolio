@@ -3,17 +3,17 @@ import {
   Jumbotron
 } from 'reactstrap';
 // import { getProjects, editProject, deleteProject } from '../actions/projectActions';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import InfiniteExodus from '../images/InfiniteExodus.png';
 import LifeSkillPoints from '../images/LifeSkillPoints.jpg';
 
 class ProjectBody extends Component {
-  constructor(props) {
-    super(props);
-    // this.handleDelete = this.handleDelete.bind(this);
-  };
+  // constructor(props) {
+  //   super(props);
+  //   this.handleDelete = this.handleDelete.bind(this);
+  // };
 
   // static propTypes = {
   //   getProjects: PropTypes.func.isRequired,

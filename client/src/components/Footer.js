@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { MDBIcon, MDBContainer, MDBBtn } from 'mdbreact';
-import { PromiseProvider } from 'mongoose';
 
 class Footer extends Component {
-  constructor(props) {
-    super(props);
-  };
-
   render() {
     return (
       <div>
@@ -15,7 +10,7 @@ class Footer extends Component {
             <a
               href="https://www.facebook.com/chris.d.3150"
               target="_blank"
-              ref="noopener noreferrer"
+              ref="noreferrer noopener"
               style={styles.socialLink}
             >
               <MDBIcon fab icon="facebook-f" className="pr-1" style={styles.icon} /> Facebook
@@ -26,7 +21,7 @@ class Footer extends Component {
             <a
               href="https://www.instagram.com/virtuoso_lume/"
               target="_blank"
-              ref="noopener noreferrer"
+              ref="noreferrer noopener"
               style={styles.socialLink}
             >
               <MDBIcon fab icon="instagram" className="pr-1" style={styles.icon} /> Instagram
@@ -37,7 +32,7 @@ class Footer extends Component {
             <a
               href="https://www.youtube.com/channel/UCj8pYnnOtWp5OKHzVOh0R3A"
               target="_blank"
-              ref="noopener noreferrer"
+              ref="noreferrer noopener"
               style={styles.socialLink}
             >
               <MDBIcon fab icon="youtube" className="pr-1" style={styles.icon} /> Youtube
