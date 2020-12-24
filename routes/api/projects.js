@@ -9,9 +9,10 @@ const Project = require('../../models/Project');
 // @access  Private
 router.post('/', (req, res) => {
   const newProject = new Project({
+    image: req.body.image,
     title: req.body.title,
     description: req.body.description,
-    image: req.body.image
+    url: req.body.url
   });
   newProject.save()
     .then(project => res.json(project))
@@ -41,12 +42,13 @@ router.get('/:id', (req, res) => {
 // @descrip Edit/update a project
 // @access  Private
 router.post('/:id', (req, res) => {
-  const { title, description, image } = req.body;
+  const { image, title, description, url } = req.body;
   Project.findById(req.params.id)
     .then(project => {
+      if(image) project.image = image;
       if(title) project.title = title;
       if(description) project.description = description;
-      if(image) project.image = image;
+      if(url) project.url = url;
       return project.save();
     })
     .then(savedProject => res.json(savedProject))

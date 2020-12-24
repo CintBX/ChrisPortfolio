@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Card,
-  CardImg,
-  CardDeck,
-  CardBody,
-  CardText,
-  Row,
-  Col,
-  Button
+  Jumbotron
 } from 'reactstrap';
 import { getProjects, editProject, deleteProject } from '../actions/projectActions';
 import PropTypes from 'prop-types';
@@ -38,38 +31,24 @@ class ProjectBody extends Component {
   render() {
     const { loading, projects } = this.props.project;
     if(loading) {
-      return <h1 style={styles.container}>Your projects are loading.  Please wait..</h1>
+      return <h1>Your projects are loading.  Please wait..</h1>
     } else {
       return (
         <div>
-          <CardDeck style={styles.cardGroup}>
             {
               projects && projects.map(project => (
-                <Row>
-                  <Col>
-                    <Card style={styles.card} key={ project._id }>
-                      <Button
-                        style={styles.deleteButton}
-                        close
-                        onClick={() => this.handleDelete(project._id)}
-                      />
-                      {/* <Link to={ project.url }> */}
-                        <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
-                        <CardBody>
-                          <Link to={`/edit-project/${project._id}`}>
-                            <Button style={styles.editButton} close>?</Button>
-                          </Link>
-                          <CardText>
-                            <span style={styles.title}>{ project.title }</span>
-                          </CardText>
-                        </CardBody>
-                      {/* </Link> */}
-                    </Card>
-                  </Col>
-                </Row>
+                <div style={styles.container}>
+                <Jumbotron style={styles.container}>
+                  <Link to={ project.url }>
+                    <img style={styles.image} src={ project.image ? project.image : "https://via.placeholder.com/400"} alt="project" />
+                    <br />
+                    <h1>{ project.title }</h1>
+                    <p>{ project.description }</p>
+                  </Link>
+                </Jumbotron>
+                </div>
               ))
             }
-          </CardDeck>
         </div>
       );
     };
@@ -77,29 +56,19 @@ class ProjectBody extends Component {
 };
 
 const styles = {
-  cardGroup: {
-    color: 'black',
+  container: {
+    // padding: 50,
+    backgroundColor: 'blue'
+  },
+  image: {
+    display: 'flex',
     justifyContent: 'center',
-    textAlign: 'center'
-  },
-  card: {
-    width: 250,
-    marginTop: 20,
-    marginBottom: 20
-  },
-  title: {
-    float: 'left',
-    fontWeight: 600
-  },
-  editButton: {
-    color: "green",
-    borderBottom: "1px"
-  },
-  deleteButton: {
-    // paddingLeft: '93%',
-    color: 'red'
+    width: '80%',
+    height: 200,
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
-};
+}
 
 const mapStateToProps = state => ({
   project: state.project

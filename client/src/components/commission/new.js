@@ -69,6 +69,7 @@ class NewCommissionForm extends Component {
         { redirectToCommissions ? <Redirect to="/" /> : null }
         <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
           <h1 style={styles.title}>Upload a new Commission</h1>
+          {/* Image later */}
           <FormGroup row>
             <Label for="title" sm={2}>Title</Label>
             <Col sm={10}>

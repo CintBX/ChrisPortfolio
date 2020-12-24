@@ -69,6 +69,7 @@ class NewProjectForm extends Component {
         { redirectToProjects ? <Redirect to="/project-list" /> : null }
         <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
           <h1 style={styles.title}>New Big Project?</h1>
+          {/* Image later */}
           <FormGroup row>
             <Label for="title" sm={2}>What's it called?</Label>
             <Col sm={10}>
