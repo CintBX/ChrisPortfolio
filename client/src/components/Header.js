@@ -1,9 +1,18 @@
-import React from 'react';
-import { Row, Col } from 'reactstrap';
+import React, { useState } from 'react';
+import {
+  Row,
+  Col,
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap';
 import profilePic from '../images/pr8.jpg';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const Header = () => {
+  const [dropDown, setDropDown] = useState(false);
+  const toggle = () => setDropDown(!dropDown);
   return (
     <div>
       <Row style={styles.container}>
@@ -39,17 +48,23 @@ const Header = () => {
           </div>
 
           <div style={styles.linkGroup}>
-            <NavLink to="/new-commission" style={styles.link} activeStyle={styles.active}>
-              New Commission
-            </NavLink>
+            <ButtonDropdown style={styles.dropdown} isOpen={dropDown} toggle={toggle}>
+              <DropdownToggle caret color="blue">Create New </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem>
+                  <Link to="/new-commission">Commission</Link>
+                </DropdownItem>
+                <DropdownItem>
+                  <Link to="/new-project">Project</Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+
             <NavLink exact to="/" style={styles.link} activeStyle={styles.active}>
               Art Collection
             </NavLink>
             <NavLink to="/project-list" style={styles.link} activeStyle={styles.active}>
               Passion Projects
-            </NavLink>
-            <NavLink to="/new-project" style={styles.link} activeStyle={styles.active}>
-              New Project
             </NavLink>
           </div>
         </Col>
@@ -77,6 +92,9 @@ const styles = {
   link: {
     padding: 20,
     color: 'white'
+  },
+  dropdown: {
+    paddingRight: 10
   },
   active: {
     backgroundColor: '#3FBADA',
