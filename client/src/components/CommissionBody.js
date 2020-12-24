@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Component } from 'react';
 import {
   Card,
   CardImg,
@@ -6,56 +6,72 @@ import {
   CardBody,
   CardText,
   Row,
-  Col
+  Col,
+  Button
 } from 'reactstrap';
-import { useSelector, useDispatch } from 'react-redux';
-import { getCommissions } from '../actions/commissionActions';
+import { getCommissions, deleteCommission } from '../actions/commissionActions';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const CommissionBody = props => {
-  const dispatch = useDispatch();
-  const { commissions, loading } = useSelector(
-    state => ({
-      commissions: state.commission.commissions,
-      loading: state.commission.loading
-    })
-  );
+class CommissionBody extends Component {
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+  };
 
-  useEffect(() => {
-    dispatch(getCommissions());
-  }, []);
+  static propTypes = {
+    getCommissions: PropTypes.func.isRequired,
+    deleteCommission: PropTypes.func,
+    commission: PropTypes.object.isRequired
+  };
 
-  if(loading) {
-    return <h1 style={styles.container}>Your commissions are loading.  Please wait..</h1>
-  } else {
-    return (
-      <div>
-        <CardDeck style={styles.cardGroup}>
-          {
-            commissions && commissions.map(commission => (
-              <Row>
-                <Col>
-                  <Link to={`/show-commission/${commission._id}`}>
+  componentDidMount() {
+    this.props.getCommissions();
+  };
+
+  handleDelete(id) {
+    this.props.deleteCommission(id);
+  };
+
+  render() {
+    const { loading, commissions } = this.props.commission;
+    if(loading) {
+      return <h1 style={styles.container}>Your commissions are loading.  Please wait..</h1>
+    } else {
+      return (
+        <div>
+          <CardDeck style={styles.cardGroup}>
+            {
+              commissions && commissions.map(commission => (
+                <Row>
+                  <Col>
                     <Card style={styles.card} key={ commission._id }>
-                      <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
-                      <CardBody>
-                        <CardText>
-                          <span style={styles.title}>{ commission.title }</span>
-                          <span style={styles.price}>${ commission.price }</span>
-                        </CardText>
-                      </CardBody>
+                      <Button
+                        style={styles.deleteButton}
+                        close
+                        onClick={() => this.handleDelete(commission._id)}
+                      />
+                      <Link to={`/show-commission/${commission._id}`}>
+                        <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
+                        <CardBody>
+                          <CardText>
+                            <span style={styles.title}>{ commission.title }</span>
+                            <span style={styles.price}>${ commission.price }</span>
+                          </CardText>
+                        </CardBody>
+                      </Link>
                     </Card>
-                  </Link>
-                </Col>
-              </Row>
-            ))
-          }
-        </CardDeck>
-      </div>
-    )
-  }
-}
+                  </Col>
+                </Row>
+              ))
+            }
+          </CardDeck>
+        </div>
+      );
+    };
+  };
+};
 
 const styles = {
   cardGroup: {
@@ -76,67 +92,15 @@ const styles = {
     float: 'right',
     fontStyle: 'italic',
     fontSize: '1.1em'
+  },
+  deleteButton: {
+    paddingLeft: '93%',
+    color: 'red'
   }
-}
+};
 
-// CommissionBody.propTypes = {
-//   getCommissions: PropTypes.func.isRequired,
-//   commission: PropTypes.object.isRequired
-// }
+const mapStateToProps = state => ({
+  commission: state.commission
+});
 
-export default CommissionBody;
-
-
-/* If you decide to use Class Components just in case
-  class Body extends React.Component {
-    constructor(props) {
-      super(props);
-    };
-
-    componentDidMount() {
-      this.props.getCommissions();
-    };
-
-    render() {
-      const { commissions } = this.props.commission;
-      return (
-        <div style={styles.container}>
-        <div style={styles.buttonGroup}>
-          <span style={styles.button}>
-            <Button color="primary" size="lg">Commissions</Button>
-          </span>
-          <span style={styles.button}>
-            <Button color="primary" size="lg">Projects</Button>
-          </span>
-        </div>
-
-          <CardDeck style={styles.cardGroup}>
-            {
-              commissions ? commissions.map(commission => (
-                <Row>
-                  <Col>
-                    <Card style={styles.card} key={ commission.id }>
-                      <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
-                      <CardBody>
-                        <CardText>
-                          <span style={styles.title}>{ commission.title }</span>
-                          <span style={styles.price}>{ commission.price }</span>
-                        </CardText>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-              )) : null
-            }
-          </CardDeck>
-      </div>
-      )
-    }
-  }
-
-  // const mapStateToProps = state => ({
-  //   commissions: state.commission.commissions
-  // })
-
-  // export default connect(mapStateToProps, {getCommissions})(Body);
-*/
+export default connect(mapStateToProps, { getCommissions, deleteCommission })(CommissionBody);

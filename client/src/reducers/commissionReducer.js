@@ -7,7 +7,8 @@ import {
   SHOW_COMMISSION,
   EDIT_COMMISSION,
   EDIT_COMMISSION_FAIL,
-  DELETE_COMMISSION
+  DELETE_COMMISSION,
+  DELETE_COMMISSION_FAIL
 } from '../actions/types';
 
 const initialState = {
@@ -44,10 +45,17 @@ export default function(state = initialState, action) {
         showCommission: action.payload,
         loading: false
       };
+
+    case DELETE_COMMISSION:
+      return {
+        ...state,
+        commissions: state.commissions.filter(commission => commission._id !== action.payload)
+      };
       
     case ADD_COMMISSION_FAIL:
     case EDIT_COMMISSION:
     case EDIT_COMMISSION_FAIL:
+    case DELETE_COMMISSION_FAIL:
       return { ...state };
 
     default:

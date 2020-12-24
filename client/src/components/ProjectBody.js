@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
-import {
-  Card,
-  CardImg,
-  CardDeck,
-  CardBody,
-  CardText,
-  Row,
-  Col
-} from 'reactstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+// import {
+//   Card,
+//   CardImg,
+//   CardDeck,
+//   CardBody,
+//   CardText,
+//   Row,
+//   Col
+// } from 'reactstrap';
+// import { useSelector, useDispatch } from 'react-redux';
 // import { getProjects } from '../actions/projectActions';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const ProjectBody = props => {
   // const dispatch = useDispatch();
@@ -36,31 +36,31 @@ const ProjectBody = props => {
   // }
 }
 
-const styles = {
-  cardGroup: {
-    color: 'black',
-    justifyContent: 'center',
-    textAlign: 'center'
-  },
-  card: {
-    width: 250,
-    marginTop: 20,
-    marginBottom: 20
-  },
-  title: {
-    float: 'left',
-    fontWeight: 600
-  },
-  price: {
-    float: 'right',
-    fontStyle: 'italic',
-    fontSize: '1.1em'
-  }
-}
+// const styles = {
+//   cardGroup: {
+//     color: 'black',
+//     justifyContent: 'center',
+//     textAlign: 'center'
+//   },
+//   card: {
+//     width: 250,
+//     marginTop: 20,
+//     marginBottom: 20
+//   },
+//   title: {
+//     float: 'left',
+//     fontWeight: 600
+//   },
+//   price: {
+//     float: 'right',
+//     fontStyle: 'italic',
+//     fontSize: '1.1em'
+//   }
+// }
 
-ProjectBody.propTypes = {
-  getCommissions: PropTypes.func.isRequired,
-  commission: PropTypes.object.isRequired
-}
+// ProjectBody.propTypes = {
+//   getCommissions: PropTypes.func.isRequired,
+//   commission: PropTypes.object.isRequired
+// }
 
 export default ProjectBody;

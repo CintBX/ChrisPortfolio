@@ -7,7 +7,8 @@ import {
   SHOW_COMMISSION,
   EDIT_COMMISSION,
   EDIT_COMMISSION_FAIL,
-  DELETE_COMMISSION
+  DELETE_COMMISSION,
+  DELETE_COMMISSION_FAIL
 } from '../actions/types';
 import axios from 'axios';
 import { returnErrors } from './errorActions';
@@ -87,4 +88,25 @@ export const editCommission = ({ _id, title, description, price }) => dispatch =
       type: GET_COMMISSIONS,
       payload: res.data
     }));
+};
+
+
+export const deleteCommission = id => dispatch => {
+  const config = {
+    headers : {
+      "Content-Type": "application/json"
+    }
+  };
+  axios
+    .delete(`/commissions/${id}`, config)
+    .then(() => dispatch({
+      type: DELETE_COMMISSION,
+      payload: id
+    }))
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: DELETE_COMMISSION_FAIL
+      });
+    });
 };
