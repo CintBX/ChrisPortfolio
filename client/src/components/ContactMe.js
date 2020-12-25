@@ -18,7 +18,8 @@ class ContactMe extends Component {
 
   sendEmail(e) {
     e.preventDefault();
-    emailjs.sendForm('blank', 'blank', e.target, 'blank')
+    emailjs
+      .sendForm('SERVICE_ID', 'TEMPLATE_ID', e.target, 'USER_ID')
       .then(res => {
         console.log(res.text);
       }, err => {
@@ -36,22 +37,24 @@ class ContactMe extends Component {
           </div>
 
           <FormGroup row>
-            <Label for="user_name" sm={2}>Your Name</Label>
+            <Label for="from_name" sm={2}>Your Name</Label>
             <Col sm={10}>
               <Input
                 type="text"
-                name="user_name"
+                name="from_name"
                 autoFocus
+                required
               />
             </Col>
           </FormGroup>
 
           <FormGroup row>
-            <Label for="user_email" sm={2}>Your Email</Label>
+            <Label for="from_email" sm={2}>Your Email</Label>
             <Col sm={10}>
               <Input
                 type="email"
-                name="user_email"
+                name="from_email"
+                required
               />
             </Col>
           </FormGroup>
@@ -62,6 +65,7 @@ class ContactMe extends Component {
               <Input
                 type="textarea"
                 name="message"
+                required
               />
             </Col>
           </FormGroup>
@@ -97,7 +101,10 @@ const styles = {
     paddingRight: '20%',
   },
   submitButton: {
-    fontSize: '1.3em'
+    fontSize: '1.3em',
+    fontWeight: 'bold',
+    backgroundColor: 'darkgrey',
+    color: 'green'
   }
 };
 
