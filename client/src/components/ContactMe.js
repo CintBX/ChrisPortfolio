@@ -28,11 +28,15 @@ class ContactMe extends Component {
 
   render() {
     return (
-      <div>
+      <div style={styles.container}>
         <Form autoFocus={false} onSubmit={this.sendEmail}>
-          <h1>Contact me</h1>
+          <div style={styles.title}>
+            <h1>Like my work?</h1>
+            <h2>Fill out this form to reach me!</h2>
+          </div>
+
           <FormGroup row>
-            <Label for="user_name" sm={2}>Enter your name</Label>
+            <Label for="user_name" sm={2}>Your Name</Label>
             <Col sm={10}>
               <Input
                 type="text"
@@ -43,7 +47,7 @@ class ContactMe extends Component {
           </FormGroup>
 
           <FormGroup row>
-            <Label for="user_email" sm={2}>Include your email</Label>
+            <Label for="user_email" sm={2}>Your Email</Label>
             <Col sm={10}>
               <Input
                 type="email"
@@ -53,7 +57,7 @@ class ContactMe extends Component {
           </FormGroup>
 
           <FormGroup row>
-            <Label for="message" sm={2}>Write message</Label>
+            <Label for="message" sm={2}>Your Message</Label>
             <Col sm={10}>
               <Input
                 type="textarea"
@@ -62,11 +66,12 @@ class ContactMe extends Component {
             </Col>
           </FormGroup>
 
-          <FormGroup row>
+          <FormGroup row style={styles.submitContainer}>
             <Col sm={10}>
               <Input
                 type="submit"
-                value="Send"
+                value="Email Me"
+                style={styles.submitButton}
               />
             </Col>
           </FormGroup>
@@ -74,6 +79,26 @@ class ContactMe extends Component {
       </div>
     );
   };
+};
+
+const styles = {
+  container: {
+    paddingLeft: '5%',
+    paddingRight: '5%'
+  },
+  title: {
+    paddingBottom: 50,
+    textAlign: 'center'
+  },
+  submitContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingLeft: '20%',
+    paddingRight: '20%',
+  },
+  submitButton: {
+    fontSize: '1.3em'
+  }
 };
 
 export default ContactMe;
