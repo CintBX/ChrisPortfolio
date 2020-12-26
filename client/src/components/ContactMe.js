@@ -5,7 +5,8 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
+  Alert
 } from 'reactstrap';
 
 class ContactMe extends Component {
@@ -16,7 +17,8 @@ class ContactMe extends Component {
     this.state = {
       from_name: "",
       from_email: "",
-      message: ""
+      message: "",
+      submitted: false
     };
   };
 
@@ -44,7 +46,8 @@ class ContactMe extends Component {
     this.setState({
       from_name: "",
       from_email: "",
-      message: ""
+      message: "",
+      submitted: true
     });
   };
 
@@ -99,11 +102,17 @@ class ContactMe extends Component {
 
           <FormGroup row style={styles.submitContainer}>
             <Col sm={10}>
-              <Input
-                type="submit"
-                value="Email Me"
-                style={styles.submitButton}
-              />
+              {
+                !this.state.submitted ? 
+                <Input
+                  type="submit"
+                  value="Email Me"
+                  style={styles.submitButton}
+                /> :
+                <Alert color="success" style={styles.alert}>
+                  Thanks for your message! I'll reply ASAP
+                </Alert>
+              }
             </Col>
           </FormGroup>
         </Form>
@@ -132,6 +141,10 @@ const styles = {
     fontWeight: 'bold',
     backgroundColor: 'darkgrey',
     color: 'green'
+  },
+  alert: {
+    textAlign: 'center',
+    fontSize: '1.2em'
   }
 };
 
