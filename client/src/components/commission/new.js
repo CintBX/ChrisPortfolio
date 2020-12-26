@@ -77,6 +77,7 @@ class NewCommissionForm extends Component {
                 type="text"
                 name="title"
                 id="title"
+                maxLength="18"
                 autoFocus
                 required
                 onChange={this.handleChange}
