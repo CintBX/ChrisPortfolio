@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 import emailjs from 'emailjs-com';
-// import './ContactUs.css';
 import {
   Col,
   Form,
   FormGroup,
   Label,
-  Input,
-  Button
+  Input
 } from 'reactstrap';
 
 class ContactMe extends Component {
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this);
     this.sendEmail = this.sendEmail.bind(this);
+    this.state = {
+      from_name: "",
+      from_email: "",
+      message: ""
+    };
+  };
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   sendEmail(e) {
-    // const { REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_USER_ID } = process.env;
     e.preventDefault();
     emailjs
       .sendForm(
@@ -31,6 +40,12 @@ class ContactMe extends Component {
       }, err => {
         console.log(err.text);
       });
+
+    this.setState({
+      from_name: "",
+      from_email: "",
+      message: ""
+    });
   };
 
   render() {
@@ -48,6 +63,8 @@ class ContactMe extends Component {
               <Input
                 type="text"
                 name="from_name"
+                onChange={this.handleChange}
+                value={this.state.from_name}
                 autoFocus
                 required
               />
@@ -60,6 +77,8 @@ class ContactMe extends Component {
               <Input
                 type="email"
                 name="from_email"
+                onChange={this.handleChange}
+                value={this.state.from_email}
                 required
               />
             </Col>
@@ -71,6 +90,8 @@ class ContactMe extends Component {
               <Input
                 type="textarea"
                 name="message"
+                onChange={this.handleChange}
+                value={this.state.message}
                 required
               />
             </Col>
