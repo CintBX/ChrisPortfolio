@@ -78,6 +78,7 @@ class EditCommissionForm extends Component {
                 type="text"
                 name="title"
                 id="title"
+                maxLength="22"
                 autoFocus
                 onChange={this.handleChange}
                 value={this.state.title}

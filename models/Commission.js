@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const CommissionSchema = new Schema({
   title: {
     type: String,
-    maxlength: 18,
+    maxlength: 22,
     required: true
   },
   description: {
