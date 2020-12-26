@@ -17,9 +17,15 @@ class ContactMe extends Component {
   };
 
   sendEmail(e) {
+    // const { REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_USER_ID } = process.env;
     e.preventDefault();
     emailjs
-      .sendForm('SERVICE_ID', 'TEMPLATE_ID', e.target, 'USER_ID')
+      .sendForm(
+        process.env.REACT_APP_SERVICE_ID,
+        process.env.REACT_APP_TEMPLATE_ID,
+        e.target,
+        process.env.REACT_APP_USER_ID
+      )
       .then(res => {
         console.log(res.text);
       }, err => {
