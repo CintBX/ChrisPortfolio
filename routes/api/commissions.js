@@ -37,9 +37,6 @@ router.get('/', (req, res) => {
 });
 
 /*
-// @route   GET /commissions
-// @descrip Show all commissions
-// @access  Public
 router.get('/', (req, res) => {
   Commission.find()
     .sort({ createdAt: -1 })        // -1 is descending order; 1 is ascending order

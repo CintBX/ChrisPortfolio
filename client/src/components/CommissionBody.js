@@ -7,10 +7,7 @@ import {
   CardText,
   Row,
   Col,
-  Button,
-  Pagination,
-  PaginationItem,
-  PaginationLink
+  Button
 } from 'reactstrap';
 import { getCommissions, deleteCommission } from '../actions/commissionActions';
 import PropTypes from 'prop-types';
@@ -95,30 +92,59 @@ class CommissionBody extends Component {
             }
           </CardDeck>
           { pager.pages && pager.pages.length &&
-            <Pagination size="lg" style={styles.paginationContainer}>
-              <PaginationItem disabled={pager.currentPage === 1 ? true : false}>
-                {/* <PaginationLink first href={{ search: `?page=1` }} /> */}
-                <PaginationLink first href={`?page=1`} />
-              </PaginationItem>
-              <PaginationItem disabled={pager.currentPage === 1 ? true : false}>
-                <PaginationLink previous href={`?page=${pager.currentPage - 1}`} />
-              </PaginationItem>
+            <ul className="pagination" style={styles.paginationContainer}>
+              <li className={`page-item first-item ${pager.currentPage === 1 ? 'disabled' : ''}`}>
+                <Link
+                  to={{ search: `?page=1` }}
+                  className="page-link"
+                  style={styles.paginationLink}
+                >
+                  First
+                </Link>
+              </li>
+              <li className={`page-item previous-item ${pager.currentPage === 1 ? 'disabled' : ''}`}>
+                <Link
+                  to={{ search: `?page=${pager.currentPage - 1}` }}
+                  className="page-link"
+                  style={styles.paginationLink}
+                >
+                  Previous
+                </Link>
+              </li>
+
               {
-                pager.pages && pager.pages.map(page => (
-                  <PaginationItem key={page} active={pager.currentPage === page ? true : false}>
-                    <PaginationLink href={`?page=${page}`}>
+                pager.pages.map(page => (
+                  <li key={page} className={`page-item number-item ${pager.currentPage === page ? 'active' : ''}`}>
+                    <Link
+                      to={{ search: `?page=${page}` }}
+                      className="page-link"
+                      style={styles.paginationLink}
+                    >
                       {page}
-                    </PaginationLink>
-                  </PaginationItem>
+                    </Link>
+                  </li>
                 ))
               }
-              <PaginationItem disabled={pager.currentPage === pager.totalPages ? true : false}>
-                <PaginationLink next href={`?page=${pager.currentPage + 1}`} />
-              </PaginationItem>
-              <PaginationItem disabled={pager.currentPage === pager.totalPages ? true : false}>
-                <PaginationLink last href={`?page=${pager.totalPages}`} />
-              </PaginationItem>
-            </Pagination>
+
+              <li className={`page-item next-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
+                <Link
+                  to={{ search: `?page=${pager.currentPage + 1}` }}
+                  className="page-link"
+                  style={styles.paginationLink}
+                >
+                  Next
+                </Link>
+              </li>
+              <li className={`page-item last-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
+                <Link
+                  to={{ search: `?page=${pager.totalPages}` }}
+                  className="page-link"
+                  style={styles.paginationLink}
+                >
+                  Last
+                </Link>
+              </li>
+            </ul>
           }
         </div>
       );
@@ -152,12 +178,14 @@ const styles = {
   },
   paginationContainer: {
     marginTop: 20,
-    backgroundColor: 'lightgrey',
     display: 'flex',
     justifyContent: 'center',
     padding: 10,
     marginLeft: 'auto',
     marginRight: 'auto'
+  },
+  paginationLink: {
+    color: 'white'
   }
 };
 
@@ -166,3 +194,29 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { getCommissions, deleteCommission })(CommissionBody);
+
+/*  ReactStrap pagination causes page refresh NO BUENO
+<Pagination size="lg" style={styles.paginationContainer}>
+  <PaginationItem disabled={pager.currentPage === 1 ? true : false}>
+    <PaginationLink first href={`?page=1`} />
+  </PaginationItem>
+  <PaginationItem disabled={pager.currentPage === 1 ? true : false}>
+    <PaginationLink previous href={`?page=${pager.currentPage - 1}`} />
+  </PaginationItem>
+  {
+    pager.pages && pager.pages.map(page => (
+      <PaginationItem key={page} active={pager.currentPage === page ? true : false}>
+        <PaginationLink href={`?page=${page}`}>
+          {page}
+        </PaginationLink>
+      </PaginationItem>
+    ))
+  }
+  <PaginationItem disabled={pager.currentPage === pager.totalPages ? true : false}>
+    <PaginationLink next href={`?page=${pager.currentPage + 1}`} />
+  </PaginationItem>
+  <PaginationItem disabled={pager.currentPage === pager.totalPages ? true : false}>
+    <PaginationLink last href={`?page=${pager.totalPages}`} />
+  </PaginationItem>
+</Pagination>
+*/
