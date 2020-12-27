@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const paginate = require('jw-paginate');
 
 // Commission model
 const Commission = require('../../models/Commission');
@@ -25,9 +26,27 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   Commission.find()
     .sort({ createdAt: -1 })        // -1 is descending order; 1 is ascending order
+    .then(commissions => {
+      const page = parseInt(req.query.page) || 1;
+      const pageSize = 12;
+      const pager = paginate(commissions && commissions.length, page, pageSize);
+      const pageOfCommissions = commissions && commissions.slice(pager.startIndex, pager.endIndex + 1);
+      return res.json({ pager, pageOfCommissions });
+    })
+    .catch(err => res.status(400).json(`Show all commissions failed: ${err}`));
+});
+
+/*
+// @route   GET /commissions
+// @descrip Show all commissions
+// @access  Public
+router.get('/', (req, res) => {
+  Commission.find()
+    .sort({ createdAt: -1 })        // -1 is descending order; 1 is ascending order
     .then(commissions => res.json(commissions))
     .catch(err => res.status(400).json(`Show all commissions failed: ${err}`));
 });
+*/
 
 // @route   GET /commissions/:id
 // @descrip Show one commission
