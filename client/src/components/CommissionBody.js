@@ -12,7 +12,7 @@ import {
 import { getCommissions, deleteCommission } from '../actions/commissionActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 class CommissionBody extends Component {
   constructor(props) {
@@ -99,7 +99,7 @@ class CommissionBody extends Component {
                   className="page-link"
                   style={styles.paginationLink}
                 >
-                  First
+                  &#x022D8;
                 </Link>
               </li>
               <li className={`page-item previous-item ${pager.currentPage === 1 ? 'disabled' : ''}`}>
@@ -108,7 +108,7 @@ class CommissionBody extends Component {
                   className="page-link"
                   style={styles.paginationLink}
                 >
-                  Previous
+                  &#x0003C;
                 </Link>
               </li>
 
@@ -132,7 +132,7 @@ class CommissionBody extends Component {
                   className="page-link"
                   style={styles.paginationLink}
                 >
-                  Next
+                  &#x0003E;
                 </Link>
               </li>
               <li className={`page-item last-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
@@ -141,7 +141,7 @@ class CommissionBody extends Component {
                   className="page-link"
                   style={styles.paginationLink}
                 >
-                  Last
+                  &#x022D9;
                 </Link>
               </li>
             </ul>
@@ -185,7 +185,8 @@ const styles = {
     marginRight: 'auto'
   },
   paginationLink: {
-    color: 'white'
+    color: 'white',
+    fontSize: '1.1em'
   }
 };
 
