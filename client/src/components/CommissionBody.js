@@ -185,7 +185,7 @@ const styles = {
     marginRight: 'auto'
   },
   paginationLink: {
-    color: 'white',
+    color: 'lightgrey',
     fontSize: '1.1em'
   }
 };
