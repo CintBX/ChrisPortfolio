@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -18,8 +18,13 @@ import ProjectBody from './components/ProjectBody';
 // import EditProjectForm from './components/project/edit';
 import Footer from './components/Footer';
 import ContactMe from './components/ContactMe';
+import { loadUser } from './actions/userActions';
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+  
   return (
     <Provider store={store}>
       <Container fluid style={styles.container}>
