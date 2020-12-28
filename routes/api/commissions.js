@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const paginate = require('jw-paginate');
+const authorize = require('../../middleware/authorize');
 
 // Commission model
 const Commission = require('../../models/Commission');
@@ -8,7 +9,7 @@ const Commission = require('../../models/Commission');
 // @route   POST /commissions
 // @descrip Create a new commission
 // @access  Private
-router.post('/', (req, res) => {
+router.post('/', authorize, (req, res) => {
   const newCommission = new Commission({
     title: req.body.title,
     description: req.body.description,
@@ -36,15 +37,6 @@ router.get('/', (req, res) => {
     .catch(err => res.status(400).json(`Show all commissions failed: ${err}`));
 });
 
-/*
-router.get('/', (req, res) => {
-  Commission.find()
-    .sort({ createdAt: -1 })        // -1 is descending order; 1 is ascending order
-    .then(commissions => res.json(commissions))
-    .catch(err => res.status(400).json(`Show all commissions failed: ${err}`));
-});
-*/
-
 // @route   GET /commissions/:id
 // @descrip Show one commission
 // @access  Public
@@ -57,7 +49,7 @@ router.get('/:id', (req, res) => {
 // @route   POST /commissions/:id
 // @descrip Edit/update a commission
 // @access  Private
-router.post('/:id', (req, res) => {
+router.post('/:id', authorize, (req, res) => {
   const { title, description, price, image } = req.body;
   Commission.findById(req.params.id)
     .then(commission => {
@@ -74,7 +66,7 @@ router.post('/:id', (req, res) => {
 // @route   DELETE /commissions/:id
 // @descrip Delete a commission
 // @access  Private
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authorize, (req, res) => {
   Commission.findById(req.params.id)
     .then(commission => commission.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json(`Delete commission failed: ${err}`));
