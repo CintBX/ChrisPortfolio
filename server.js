@@ -19,10 +19,12 @@ app.use(express.json());
 // Bind Routes
 const commissions = require('./routes/api/commissions');
 const projects = require('./routes/api/projects');
+const users = require('./routes/api/users');
 // Use Routes
 app.use(cors());
 app.use('/commissions', commissions);
 app.use('/projects', projects);
+app.use('/users', users);
 
 
 // Mongo connect
