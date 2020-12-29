@@ -34,7 +34,8 @@ class NewCommissionForm extends Component {
   };
 
   static propTypes = {
-    addCommission: PropTypes.func.isRequired
+    addCommission: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired
   };
 
   handleChange(e) {
@@ -64,64 +65,73 @@ class NewCommissionForm extends Component {
 
   render() {
     const redirectToCommissions = this.state.redirectToCommissions;
-    return (
-      <div>
-        { redirectToCommissions ? <Redirect to="/" /> : null }
-        <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
-          <h1 style={styles.title}>Upload a new Commission</h1>
-          {/* Image later */}
-          <FormGroup row>
-            <Label for="title" sm={2}>Title</Label>
-            <Col sm={10}>
-              <Input
-                type="text"
-                name="title"
-                id="title"
-                maxLength="22"
-                autoFocus
-                required
-                onChange={this.handleChange}
-                value={this.state.title}
-              />
-            </Col>
-          </FormGroup>
-
-          <FormGroup row>
-            <Label for="description" sm={2}>Description</Label>
-            <Col sm={10}>
-              <Input
-                type="textarea"
-                name="description"
-                id="description"
-                required
-                onChange={this.handleChange}
-                value={this.state.description}
-              />
-            </Col>
-          </FormGroup>
-
-          <FormGroup row>
-            <Label for="price" sm={2}>Price</Label>
-            <Col sm={10}>
-              <Input
-                type="number"
-                name="price"
-                id="price"
-                min={0}
-                onChange={this.handleChange}
-                value={this.state.price}
-              />
-            </Col>
-          </FormGroup>
-
-          <FormGroup row>
-            <Col sm={10}>
-              <Button outline color="info" style={styles.submitButton}>Submit</Button>
-            </Col>
-          </FormGroup>
-        </Form>
-      </div>
-    );
+    const { isAuthenticated } = this.props.user;
+    if(!isAuthenticated) {
+      return (
+        <h1 style={styles.accessDenied}>
+          You don't have access to this page
+        </h1>
+      );
+    } else {
+      return (
+        <div>
+          { redirectToCommissions ? <Redirect to="/" /> : null }
+          <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
+            <h1 style={styles.title}>Upload a new Commission</h1>
+            {/* Image later */}
+            <FormGroup row>
+              <Label for="title" sm={2}>Title</Label>
+              <Col sm={10}>
+                <Input
+                  type="text"
+                  name="title"
+                  id="title"
+                  maxLength="22"
+                  autoFocus
+                  required
+                  onChange={this.handleChange}
+                  value={this.state.title}
+                />
+              </Col>
+            </FormGroup>
+  
+            <FormGroup row>
+              <Label for="description" sm={2}>Description</Label>
+              <Col sm={10}>
+                <Input
+                  type="textarea"
+                  name="description"
+                  id="description"
+                  required
+                  onChange={this.handleChange}
+                  value={this.state.description}
+                />
+              </Col>
+            </FormGroup>
+  
+            <FormGroup row>
+              <Label for="price" sm={2}>Price</Label>
+              <Col sm={10}>
+                <Input
+                  type="number"
+                  name="price"
+                  id="price"
+                  min={0}
+                  onChange={this.handleChange}
+                  value={this.state.price}
+                />
+              </Col>
+            </FormGroup>
+  
+            <FormGroup row>
+              <Col sm={10}>
+                <Button outline color="info" style={styles.submitButton}>Submit</Button>
+              </Col>
+            </FormGroup>
+          </Form>
+        </div>
+      );
+    }
   };
 };
 
@@ -144,12 +154,18 @@ const styles = {
     fontSize: '1.2em',
     backgroundColor: 'black',
     color: 'white'
+  },
+  accessDenied: {
+    textAlign:'center',
+    paddingTop:50,
+    paddingBottom:50
   }
 };
 
 const mapStateToProps = state => ({
   commissions: state.commission.commissions,
-  loading: state.commission.loading
+  loading: state.commission.loading,
+  user: state.user
 });
 
 export default connect(mapStateToProps, {addCommission})(NewCommissionForm);

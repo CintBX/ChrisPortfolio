@@ -87,10 +87,13 @@ class Header extends Component {
                 </DropdownMenu>
               </ButtonDropdown> 
               */}
-
-              <NavLink to="/new-commission" style={styles.link} activeStyle={styles.active}>
-                Upload Your Work
-              </NavLink>
+              {
+                isAuthenticated ?
+                <NavLink to="/new-commission" style={styles.link} activeStyle={styles.active}>
+                  Upload Your Work
+                </NavLink>
+                : null
+              }
               <NavLink exact to="/" style={styles.link} activeStyle={styles.active}>
                 Art Collection
               </NavLink>
