@@ -31,6 +31,13 @@ export const register = ({ name, email, password }) => dispatch => {
     });
 };
 
+// Log out
+export const logout = () => {
+  return {
+    type: LOGOUT_SUCCESS
+  };
+};
+
 // Check token and load user
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
