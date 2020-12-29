@@ -12,7 +12,8 @@ class CommissionShowPage extends Component {
 
   static propTypes = {
     showCommission: PropTypes.func.isRequired,
-    commission: PropTypes.object.isRequired
+    commission: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -23,6 +24,7 @@ class CommissionShowPage extends Component {
   render() {
     const { _id, image, title, price, description } = this.props.commission.showCommission;
     const { loading } = this.props.commission;
+    const { isAuthenticated } = this.props.user;
     if(loading) {
       return <h1>This commission is loading.  Please wait..</h1>
     } else {
@@ -44,9 +46,12 @@ class CommissionShowPage extends Component {
                   { description }
                 </p>
                 <br/>
-                <Link to={`/edit-commission/${_id}`}>
-                  <Button style={styles.editButton} outline color="warning">Edit</Button>
-                </Link>
+                {
+                  isAuthenticated ?
+                  <Link to={`/edit-commission/${_id}`}>
+                    <Button style={styles.editButton} outline color="warning">Edit</Button>
+                  </Link> : null
+                }
               </Col>
             </Row>
           </Container>
@@ -71,7 +76,8 @@ const styles = {
 };
 
 const mapStateToProps = state => ({
-  commission: state.commission
+  commission: state.commission,
+  user: state.user
 });
 
 export default connect(mapStateToProps, { showCommission })(CommissionShowPage);

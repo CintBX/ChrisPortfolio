@@ -66,6 +66,7 @@ class NewCommissionForm extends Component {
   render() {
     const redirectToCommissions = this.state.redirectToCommissions;
     const { isAuthenticated } = this.props.user;
+    
     if(!isAuthenticated) {
       return (
         <h1 style={styles.accessDenied}>

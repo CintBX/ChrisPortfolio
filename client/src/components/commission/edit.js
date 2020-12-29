@@ -25,6 +25,12 @@ class EditCommissionForm extends Component {
     };
   };
 
+  static propTypes = {
+    editCommission: PropTypes.func.isRequired,
+    commission: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
+  };
+
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.showCommission(id);
@@ -33,10 +39,6 @@ class EditCommissionForm extends Component {
         redirectToShowPage: false
       });
     };
-  };
-
-  static propTypes = {
-    editCommission: PropTypes.func.isRequired
   };
 
   handleChange(e) {
@@ -66,62 +68,72 @@ class EditCommissionForm extends Component {
   render() {
     const redirectToShowPage = this.state.redirectToShowPage;
     const { _id, title, description, price } = this.props.commission.showCommission;
-    return (
-      <div>
-        { redirectToShowPage ? <Redirect to={`/show-commission/${_id}`} /> : null }
-        <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
-          <h1 style={styles.title}>Edit Commission</h1>
-          <FormGroup row>
-            <Label for="title" sm={2}>Title</Label>
-            <Col sm={10}>
-              <Input
-                type="text"
-                name="title"
-                id="title"
-                maxLength="22"
-                onChange={this.handleChange}
-                value={this.state.title}
-                placeholder={title}
-              />
-            </Col>
-          </FormGroup>
+    const { isAuthenticated } = this.props.user;
 
-          <FormGroup row>
-            <Label for="description" sm={2}>Description</Label>
-            <Col sm={10}>
-              <Input
-                type="textarea"
-                name="description"
-                id="description"
-                onChange={this.handleChange}
-                value={this.state.description}
-                placeholder={description}
-              />
-            </Col>
-          </FormGroup>
-
-          <FormGroup row>
-            <Label for="price" sm={2}>Price</Label>
-            <Col sm={10}>
-              <Input
-                type="number"
-                name="price"
-                id="price"
-                onChange={this.handleChange}
-                value={this.state.price}
-                placeholder={price}
-              />
-            </Col>
-          </FormGroup>
-
-          <FormGroup row>
-            <Col sm={10}>
-              <Button outline color="info" style={styles.submitButton}>Submit</Button>
-            </Col>
-          </FormGroup>
-        </Form>
-      </div>
-    );
+    if(!isAuthenticated) {
+      return (
+        <h1 style={styles.accessDenied}>
+          You don't have access to this page
+        </h1>
+      );
+    } else {
+      return (
+        <div>
+          { redirectToShowPage ? <Redirect to={`/show-commission/${_id}`} /> : null }
+          <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
+            <h1 style={styles.title}>Edit this commission</h1>
+            <FormGroup row>
+              <Label for="title" sm={2}>Title</Label>
+              <Col sm={10}>
+                <Input
+                  type="text"
+                  name="title"
+                  id="title"
+                  maxLength="22"
+                  onChange={this.handleChange}
+                  value={this.state.title}
+                  placeholder={title}
+                />
+              </Col>
+            </FormGroup>
+  
+            <FormGroup row>
+              <Label for="description" sm={2}>Description</Label>
+              <Col sm={10}>
+                <Input
+                  type="textarea"
+                  name="description"
+                  id="description"
+                  onChange={this.handleChange}
+                  value={this.state.description}
+                  placeholder={description}
+                />
+              </Col>
+            </FormGroup>
+  
+            <FormGroup row>
+              <Label for="price" sm={2}>Price</Label>
+              <Col sm={10}>
+                <Input
+                  type="number"
+                  name="price"
+                  id="price"
+                  onChange={this.handleChange}
+                  value={this.state.price}
+                  placeholder={price}
+                />
+              </Col>
+            </FormGroup>
+  
+            <FormGroup row>
+              <Col sm={10}>
+                <Button outline color="info" style={styles.submitButton}>Submit</Button>
+              </Col>
+            </FormGroup>
+          </Form>
+        </div>
+      );
+    }
   };
 };
 
@@ -144,11 +156,17 @@ const styles = {
     fontSize: '1.2em',
     backgroundColor: 'black',
     color: 'white'
+  },
+  accessDenied: {
+    textAlign:'center',
+    paddingTop:50,
+    paddingBottom:50
   }
 };
 
 const mapStateToProps = state => ({
-  commission: state.commission
+  commission: state.commission,
+  user: state.user
 });
 
 export default connect(mapStateToProps, {showCommission, editCommission})(EditCommissionForm);
