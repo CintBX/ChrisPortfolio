@@ -11,6 +11,7 @@ import {
   DELETE_COMMISSION_FAIL
 } from '../actions/types';
 import axios from 'axios';
+import { tokenConfig } from './userActions';
 import { returnErrors } from './errorActions';
 
 
@@ -26,17 +27,12 @@ export const getCommissions = () => dispatch => {
 };
 
 
-export const addCommission = commission => dispatch => {
-  const config = {
-		headers: {
-			"Content-Type": "application/json"
-		}
-  };
+export const addCommission = commission => (dispatch, getState) => {
   axios
-    .post('/commissions', commission, config)
-    .then(() => dispatch({
+    .post('/commissions', commission, tokenConfig(getState))
+    .then(res => dispatch({
       type: ADD_COMMISSION,
-      payload: commission
+      payload: res.data
     }))
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
@@ -63,15 +59,10 @@ export const showCommission = id => dispatch => {
 };
 
 
-export const editCommission = ({ _id, title, description, price }) => dispatch => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
+export const editCommission = ({ _id, title, description, price }) => (dispatch, getState) => {
   const body = JSON.stringify({ title, description, price });
   axios
-    .post(`/commissions/${_id}`, body, config)
+    .post(`/commissions/${_id}`, body, tokenConfig(getState))
     .then(res => dispatch({
       type: EDIT_COMMISSION,
       payload: res.data
@@ -91,14 +82,9 @@ export const editCommission = ({ _id, title, description, price }) => dispatch =
 };
 
 
-export const deleteCommission = id => dispatch => {
-  const config = {
-    headers : {
-      "Content-Type": "application/json"
-    }
-  };
+export const deleteCommission = id => (dispatch, getState) => {
   axios
-    .delete(`/commissions/${id}`, config)
+    .delete(`/commissions/${id}`, tokenConfig(getState))
     .then(() => dispatch({
       type: DELETE_COMMISSION,
       payload: id
