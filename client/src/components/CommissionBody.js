@@ -12,7 +12,7 @@ import {
 import { getCommissions, deleteCommission } from '../actions/commissionActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, StaticRouter } from 'react-router-dom';
 
 class CommissionBody extends Component {
   constructor(props) {
@@ -28,7 +28,8 @@ class CommissionBody extends Component {
   static propTypes = {
     getCommissions: PropTypes.func.isRequired,
     deleteCommission: PropTypes.func,
-    commission: PropTypes.object.isRequired
+    commission: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -59,6 +60,7 @@ class CommissionBody extends Component {
 
   render() {
     const { loading } = this.props.commission;
+    const { isAuthenticated } = this.props.user;
     const { pager, pageOfCommissions } = this.state;
     if(loading) {
       return <h1 style={styles.container}>Your commissions are loading.  Please wait..</h1>
@@ -71,11 +73,14 @@ class CommissionBody extends Component {
                 <Row>
                   <Col>
                     <Card style={styles.card} key={ commission._id }>
-                      <Button
-                        style={styles.deleteButton}
-                        close
-                        onClick={() => this.handleDelete(commission._id)}
-                      />
+                      {
+                        isAuthenticated ?
+                        <Button
+                          style={styles.deleteButton}
+                          close
+                          onClick={() => this.handleDelete(commission._id)}
+                        /> : null
+                      }
                       <Link to={`/show-commission/${commission._id}`}>
                         <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
                         <CardBody>
@@ -191,33 +196,8 @@ const styles = {
 };
 
 const mapStateToProps = state => ({
-  commission: state.commission
+  commission: state.commission,
+  user: state.user
 });
 
 export default connect(mapStateToProps, { getCommissions, deleteCommission })(CommissionBody);
-
-/*  ReactStrap pagination causes page refresh NO BUENO
-<Pagination size="lg" style={styles.paginationContainer}>
-  <PaginationItem disabled={pager.currentPage === 1 ? true : false}>
-    <PaginationLink first href={`?page=1`} />
-  </PaginationItem>
-  <PaginationItem disabled={pager.currentPage === 1 ? true : false}>
-    <PaginationLink previous href={`?page=${pager.currentPage - 1}`} />
-  </PaginationItem>
-  {
-    pager.pages && pager.pages.map(page => (
-      <PaginationItem key={page} active={pager.currentPage === page ? true : false}>
-        <PaginationLink href={`?page=${page}`}>
-          {page}
-        </PaginationLink>
-      </PaginationItem>
-    ))
-  }
-  <PaginationItem disabled={pager.currentPage === pager.totalPages ? true : false}>
-    <PaginationLink next href={`?page=${pager.currentPage + 1}`} />
-  </PaginationItem>
-  <PaginationItem disabled={pager.currentPage === pager.totalPages ? true : false}>
-    <PaginationLink last href={`?page=${pager.totalPages}`} />
-  </PaginationItem>
-</Pagination>
-*/
