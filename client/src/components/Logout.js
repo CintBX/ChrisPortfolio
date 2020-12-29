@@ -12,12 +12,20 @@ class Logout extends Component {
   render() {
     return (
       <Fragment>
-        <NavLink onClick={this.props.logout} href="#">
+        <NavLink style={styles.link} onClick={this.props.logout} href="#">
           Logout
         </NavLink>
       </Fragment>
     );
   };
 };
+
+const styles = {
+  link: {
+    marginLeft: 'auto',
+    fontSize: '1.2em',
+    color: 'teal'
+  }
+}
 
 export default connect(null, { logout })(Logout);

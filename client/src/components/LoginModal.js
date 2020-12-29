@@ -81,13 +81,13 @@ class LoginModal extends Component {
 
   render() {
     return (
-      <div>
-        <NavLink onClick={this.toggle} href="#">
+      <div style={styles.linkContainer}>
+        <NavLink style={styles.link} onClick={this.toggle} href="#">
           Login
         </NavLink>
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Welcome, Chris</ModalHeader>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} autoFocus={false}>
+          <ModalHeader toggle={this.toggle}>Welcome Chris</ModalHeader>
 
           <ModalBody>
             { this.state.msg ? <Alert className="text-center" color="danger">{ this.state.msg }</Alert> : null }
@@ -99,6 +99,7 @@ class LoginModal extends Component {
                     type="email"
                     name="email"
                     id="email"
+                    autoFocus
                     onChange={this.handleChange}
                   />
                 </Col>
@@ -123,7 +124,7 @@ class LoginModal extends Component {
               </FormGroup>
 
               <FormText>
-                Not Chris? Please continue as a guest
+                Not Chris? Continue as a guest
               </FormText>
             </Form>
           </ModalBody>
@@ -132,6 +133,16 @@ class LoginModal extends Component {
     );
   };
 };
+
+const styles = {
+  linkContainer: {
+    marginLeft: 'auto',
+    fontSize: '1.2em'
+  },
+  link: {
+    color: 'teal'
+  }
+}
 
 const mapStateToProps = state => ({
   isAuthenticated: state.user.isAuthenticated,

@@ -87,7 +87,7 @@ class RegisterModal extends Component {
           Register
         </NavLink>
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} autoFocus={false}>
           <ModalHeader toggle={this.toggle}>Register</ModalHeader>
 
           <ModalBody>
@@ -100,6 +100,7 @@ class RegisterModal extends Component {
                     type="text"
                     name="name"
                     id="name"
+                    autoFocus
                     onChange={this.handleChange}
                   />
                 </Col>
