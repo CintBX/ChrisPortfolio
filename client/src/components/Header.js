@@ -11,6 +11,7 @@ import {
 import profilePic from '../images/pr8.jpg';
 import { NavLink } from 'react-router-dom';
 import RegisterModal from './RegisterModal';
+import LoginModal from './LoginModal';
 import Logout from './Logout';
 
 const Header = () => {
@@ -25,6 +26,11 @@ const Header = () => {
           </div>
         </Col>
         <Col lg="8">
+          <div style={styles.authGroup}>
+            <RegisterModal/>
+            <LoginModal />
+            <Logout />
+          </div>
           <div style={styles.text}>
             <p>
               We wake up every day hoping to make this cycle a little better than our past. 
@@ -64,9 +70,6 @@ const Header = () => {
               </DropdownMenu>
             </ButtonDropdown> 
             */}
-
-            <RegisterModal/>
-            <Logout />
 
             <NavLink to="/new-commission" style={styles.link} activeStyle={styles.active}>
               Upload Your Work
@@ -114,7 +117,10 @@ const styles = {
     backgroundColor: '#3FBADA',
     color: 'black',
     fontWeight: '300'
+  },
+  authGroup: {
+    display: 'flex'
   }
-}
+};
 
 export default Header;
