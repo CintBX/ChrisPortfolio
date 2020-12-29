@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 import profilePic from '../images/pr8.jpg';
 import { NavLink } from 'react-router-dom';
+import RegisterModal from './RegisterModal';
 
 const Header = () => {
   // const [dropDown, setDropDown] = useState(false);
@@ -62,6 +63,8 @@ const Header = () => {
               </DropdownMenu>
             </ButtonDropdown> 
             */}
+
+            <RegisterModal/>
 
             <NavLink to="/new-commission" style={styles.link} activeStyle={styles.active}>
               Upload Your Work
