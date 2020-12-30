@@ -88,9 +88,6 @@ class Header extends Component {
                 </DropdownMenu>
               </ButtonDropdown> 
               */}
-              <NavLink to="/file-upload" style={styles.link} activeStyle={styles.active}>
-                File Upload
-              </NavLink>
               {
                 isAuthenticated ?
                 <NavLink to="/new-commission" style={styles.link} activeStyle={styles.active}>
