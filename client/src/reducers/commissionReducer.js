@@ -36,7 +36,10 @@ export default function(state = initialState, action) {
     case ADD_COMMISSION:
 			return {
 				...state,
-				commissions: [...state.commissions, action.payload]
+				commissions: {
+          pager: { ...state.commissions.pager },
+          pageOfCommissions: [...state.commissions.pageOfCommissions, action.payload]
+        }
       };
 
     case SHOW_COMMISSION:
@@ -49,7 +52,10 @@ export default function(state = initialState, action) {
     case DELETE_COMMISSION:
       return {
         ...state,
-        commissions: state.commissions.filter(commission => commission._id !== action.payload)
+        commissions: {
+          pager: { ...state.commissions.pager },
+          pageOfCommissions: state.commissions.pageOfCommissions.filter(c => c._id !== action.payload)
+        }
       };
       
     case ADD_COMMISSION_FAIL:
