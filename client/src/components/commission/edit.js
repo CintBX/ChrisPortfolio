@@ -93,6 +93,7 @@ class EditCommissionForm extends Component {
                   onChange={this.handleChange}
                   value={this.state.title}
                   placeholder={title}
+                  autoFocus
                 />
               </Col>
             </FormGroup>
