@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { addCommission } from '../../actions/commissionActions';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import ImagePreview from '../../images/ImagePreview.png';
 
 class NewCommissionForm extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class NewCommissionForm extends Component {
       title: "",
       description: "",
       price: "",
-      image: "https://via.placeholder.com/300",
+      image: ImagePreview,
       redirectToCommissions: false
     };
   };
@@ -71,7 +72,7 @@ class NewCommissionForm extends Component {
       title: "",
       description: "",
       price: "",
-      image: "https://via.placeholder.com/300",
+      image: ImagePreview,
       redirectToCommissions: true
     })
   };
@@ -104,7 +105,7 @@ class NewCommissionForm extends Component {
           console.log("Image has been uploaded using multer");
           // this.setDefaultImage("multer");
           this.setState({
-            image: "https://via.placeholder.com/300"
+            image: ImagePreview
           });
         };
       })
@@ -112,7 +113,7 @@ class NewCommissionForm extends Component {
         console.log(`Error uploading image with multer: ${err}`);
         // this.setDefaultImage("multer");
         this.setState({
-          image: "https://via.placeholder.com/300"
+          image: ImagePreview
         });
       });
   };
