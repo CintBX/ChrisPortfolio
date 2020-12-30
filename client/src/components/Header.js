@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {
   Row,
-  Col,
-  Nav
+  Col
 } from 'reactstrap';
 import profilePic from '../images/pr8.jpg';
 import { NavLink } from 'react-router-dom';
