@@ -14,17 +14,20 @@ dotenv.config();
 
 // Middleware to recognize incoming Request Object as a JSON object
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
 
 
 // Bind Routes
 const commissions = require('./routes/api/commissions');
 const projects = require('./routes/api/projects');
 const users = require('./routes/api/users');
+const images = require('./routes/api/images');
 // Use Routes
 app.use(cors());
 app.use('/commissions', commissions);
 app.use('/projects', projects);
 app.use('/users', users);
+app.use('/images', images);
 
 
 // Mongo connect

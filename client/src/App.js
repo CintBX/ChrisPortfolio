@@ -18,6 +18,7 @@ import ProjectBody from './components/ProjectBody';
 // import EditProjectForm from './components/project/edit';
 import Footer from './components/Footer';
 import ContactMe from './components/ContactMe';
+import FileUploader from './components/FileUploader';
 import { loadUser } from './actions/userActions';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Switch>
           {/* <Route path="/edit-project/:id" component={EditProjectForm} /> */}
           {/* <Route path="/new-project" component={NewProjectForm} /> */}
+          <Route path="/file-upload" component={FileUploader} />
           <Route path="/contact-me" component={ContactMe} />
           <Route path="/project-list" component={ProjectBody} />
           <Route path="/edit-commission/:id" component={EditCommissionForm} />

@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import {
   Row,
-  Col
+  Col,
+  Nav
 } from 'reactstrap';
 import profilePic from '../images/pr8.jpg';
 import { NavLink } from 'react-router-dom';
@@ -87,6 +88,9 @@ class Header extends Component {
                 </DropdownMenu>
               </ButtonDropdown> 
               */}
+              <NavLink to="/file-upload" style={styles.link} activeStyle={styles.active}>
+                File Upload
+              </NavLink>
               {
                 isAuthenticated ?
                 <NavLink to="/new-commission" style={styles.link} activeStyle={styles.active}>
