@@ -11,16 +11,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addCommission } from '../../actions/commissionActions';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+import e from 'cors';
 
 class NewCommissionForm extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setDefaultImage = this.setDefaultImage.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
     this.state = {
       title: "",
       description: "",
       price: "",
+      image: "https://via.placeholder.com/250",
       redirectToCommissions: false
     };
   };
@@ -46,6 +51,8 @@ class NewCommissionForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    
+    this.uploadImage(e, "multer");
 
     const newCommission = {
       title: this.state.title,
@@ -61,6 +68,40 @@ class NewCommissionForm extends Component {
       price: "",
       redirectToCommissions: true
     })
+  };
+
+  setDefaultImage(uploadType) {
+    if(uploadType === "multer") {
+      this.setState({
+        image: "https://via.placeholder.com/250"
+      });
+    };
+  };
+
+  uploadImage(e, method) {
+    let imageFormObj;
+    if(method === "multer") {
+      imageFormObj = new FormData();
+      imageFormObj.append("imageName", "multer-image-" + Date.now());
+      imageFormObj.append("imageData", e.target.files[0]);
+    };
+
+    this.setState({
+      image: URL.createObjectURL(e.target.files[0])
+    });
+
+    axios
+      .post("/images/uploadmulter", imageFormObj)
+      .then(data => {
+        if(data.data.success) {
+          alert("Image has been uploaded using multer");
+          this.setDefaultImage("multer");
+        };
+      })
+      .catch(err => {
+        alert(`Error uploading image with multer: ${err}`);
+        this.setDefaultImage("multer");
+      });
   };
 
   render() {
@@ -79,7 +120,7 @@ class NewCommissionForm extends Component {
           { redirectToCommissions ? <Redirect to="/" /> : null }
           <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
             <h1 style={styles.title}>Upload a new Commission</h1>
-            {/* Image later */}
+            
             <FormGroup row>
               <Label for="title" sm={2}>Title</Label>
               <Col sm={10}>
@@ -120,6 +161,24 @@ class NewCommissionForm extends Component {
                   min={0}
                   onChange={this.handleChange}
                   value={this.state.price}
+                />
+              </Col>
+            </FormGroup>
+
+            <FormGroup row>
+              <Label for="image" sm={2}>Image</Label>
+              <Col sm={10}>
+                <Input
+                  type="file"
+                  name="image"
+                  id="image"
+                  required
+                  onChange={e => this.uploadImage(e, "multer")}
+                />
+                <img
+                  src={this.state.image}
+                  alt="upload-image"
+                  style={{marginTop:15}}
                 />
               </Col>
             </FormGroup>
