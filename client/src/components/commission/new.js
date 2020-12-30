@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 import { addCommission } from '../../actions/commissionActions';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import e from 'cors';
 
 class NewCommissionForm extends Component {
   constructor(props) {
@@ -25,7 +24,7 @@ class NewCommissionForm extends Component {
       title: "",
       description: "",
       price: "",
-      image: "https://via.placeholder.com/250",
+      image: "https://via.placeholder.com/300",
       redirectToCommissions: false
     };
   };
@@ -73,7 +72,7 @@ class NewCommissionForm extends Component {
   setDefaultImage(uploadType) {
     if(uploadType === "multer") {
       this.setState({
-        image: "https://via.placeholder.com/250"
+        image: "https://via.placeholder.com/300"
       });
     };
   };
@@ -94,13 +93,13 @@ class NewCommissionForm extends Component {
       .post("/images/uploadmulter", imageFormObj)
       .then(data => {
         if(data.data.success) {
-          alert("Image has been uploaded using multer");
-          this.setDefaultImage("multer");
+          console.log("Image has been uploaded using multer");
+          // this.setDefaultImage("multer");
         };
       })
       .catch(err => {
-        alert(`Error uploading image with multer: ${err}`);
-        this.setDefaultImage("multer");
+        console.log(`Error uploading image with multer: ${err}`);
+        // this.setDefaultImage("multer");
       });
   };
 
@@ -177,8 +176,8 @@ class NewCommissionForm extends Component {
                 />
                 <img
                   src={this.state.image}
-                  alt="upload-image"
-                  style={{marginTop:15}}
+                  alt="Commission Preview"
+                  style={styles.imagePreview}
                 />
               </Col>
             </FormGroup>
@@ -219,6 +218,11 @@ const styles = {
     textAlign:'center',
     paddingTop:50,
     paddingBottom:50
+  },
+  imagePreview: {
+    marginTop: 15,
+    width: 300,
+    height: 300
   }
 };
 
