@@ -45,14 +45,18 @@ router.route('/uploadmulter')
     });
 
     newImage.save()
-      .then(result => {
-        console.log(result);
-        res.status(200).json({
-          success: true,
-          document: result
-        });
-      })
+      .then(image => res.json(image))
       .catch(err => next(err));
+
+    // newImage.save()
+    //   .then(result => {
+    //     console.log(result);
+    //     res.status(200).json({
+    //       success: true,
+    //       document: result
+    //     });
+    //   })
+    //   .catch(err => next(err));
   });
 
   module.exports = router;

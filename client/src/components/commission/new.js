@@ -10,6 +10,7 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addCommission } from '../../actions/commissionActions';
+import { addImage } from '../../actions/imageActions';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import ImagePreview from '../../images/ImagePreview.png';
@@ -58,14 +59,21 @@ class NewCommissionForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.uploadImage("multer");
+    // this.uploadImage("multer");
     
+    // Image
+    const uploadedImg = this.state.image;
+    let imageFormObj = new FormData();
+    imageFormObj.append("imageName", "multer-image-" + Date.now());
+    imageFormObj.append("imageData", uploadedImg);
+    this.props.addImage(imageFormObj);
+    
+    // Commission
     const newCommission = {
       title: this.state.title,
       description: this.state.description,
       price: this.state.price
     };
-
     this.props.addCommission(newCommission);
 
     this.setState({
@@ -247,4 +255,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, {addCommission})(NewCommissionForm);
+export default connect(mapStateToProps, {addCommission, addImage})(NewCommissionForm);
