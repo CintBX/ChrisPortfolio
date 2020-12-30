@@ -6,19 +6,17 @@ import {
   CardBody,
   CardText,
   Row,
-  Col,
-  Button
+  Col
 } from 'reactstrap';
-import { getCommissions, deleteCommission } from '../actions/commissionActions';
+import { getCommissions } from '../actions/commissionActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, StaticRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class CommissionBody extends Component {
   constructor(props) {
     super(props);
     this.loadPage = this.loadPage.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
     this.state = {
       pager: {},
       pageOfCommissions: []
@@ -54,10 +52,6 @@ class CommissionBody extends Component {
     };
   };
 
-  handleDelete(id) {
-    this.props.deleteCommission(id);
-  };
-
   render() {
     const { loading } = this.props.commission;
     const { isAuthenticated } = this.props.user;
@@ -73,14 +67,6 @@ class CommissionBody extends Component {
                 <Row>
                   <Col>
                     <Card style={styles.card} key={ commission._id }>
-                      {
-                        isAuthenticated ?
-                        <Button
-                          style={styles.deleteButton}
-                          close
-                          onClick={() => this.handleDelete(commission._id)}
-                        /> : null
-                      }
                       <Link to={`/show-commission/${commission._id}`}>
                         <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
                         <CardBody>
@@ -200,4 +186,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { getCommissions, deleteCommission })(CommissionBody);
+export default connect(mapStateToProps, { getCommissions })(CommissionBody);

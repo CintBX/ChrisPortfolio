@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import { showCommission } from '../../actions/commissionActions';
+import { Container, Row, Col, Button } from 'reactstrap';
+import { showCommission, deleteCommission } from '../../actions/commissionActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Container, Row, Col, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class CommissionShowPage extends Component {
   constructor(props) {
     super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.state = {
+      redirectToCommissions: false
+    };
   };
 
   static propTypes = {
     showCommission: PropTypes.func.isRequired,
+    deleteCommission: PropTypes.func,
     commission: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired
   };
@@ -19,17 +24,35 @@ class CommissionShowPage extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.showCommission(id);
+    if(this.state.redirectToCommissions) {
+      this.setState({
+        redirectToCommissions: false
+      });
+    };
+  };
+
+  handleDelete(id) {
+    const result = window.confirm("Delete this commission?");
+    if(result) {
+      this.props.deleteCommission(id);
+      this.setState({
+        redirectToCommissions: true
+      });
+    };
   };
 
   render() {
+    const redirectToCommissions = this.state.redirectToCommissions;
     const { _id, image, title, price, description } = this.props.commission.showCommission;
     const { loading } = this.props.commission;
     const { isAuthenticated } = this.props.user;
+
     if(loading) {
       return <h1>This commission is loading.  Please wait..</h1>
     } else {
       return (
         <div style={styles.container}>
+          { redirectToCommissions ? <Redirect to="/" /> : null }
           <Container>
             <Row>
               <Col lg={5} xl={5}>
@@ -48,9 +71,24 @@ class CommissionShowPage extends Component {
                 <br/>
                 {
                   isAuthenticated ?
-                  <Link to={`/edit-commission/${_id}`}>
-                    <Button style={styles.editButton} outline color="warning">Edit</Button>
-                  </Link> : null
+                  <div>
+                    <Link to={`/edit-commission/${_id}`}>
+                      <Button
+                        style={styles.userButton}
+                        outline
+                        color="warning"
+                      >Edit
+                        </Button>
+                    </Link>
+                    <Button
+                      style={styles.userButton}
+                      outline
+                      color="danger"
+                      onClick={() => this.handleDelete(_id)}
+                    >Delete
+                    </Button>
+                  </div>
+                  : null
                 }
               </Col>
             </Row>
@@ -67,7 +105,7 @@ const styles = {
     paddingRight: '10%',
     color: "white",
   },
-  editButton: {
+  userButton: {
     padding: 20
   },
   softenTone: {
@@ -80,4 +118,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { showCommission })(CommissionShowPage);
+export default connect(mapStateToProps, { showCommission, deleteCommission })(CommissionShowPage);
