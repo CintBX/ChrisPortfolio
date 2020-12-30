@@ -17,8 +17,9 @@ class NewCommissionForm extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.setDefaultImage = this.setDefaultImage.bind(this);
+    // this.setDefaultImage = this.setDefaultImage.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
     this.state = {
       title: "",
@@ -48,11 +49,16 @@ class NewCommissionForm extends Component {
     });
   };
 
+  handleImageChange(e) {
+    this.setState({
+      image: URL.createObjectURL(e.target.files[0])
+    });
+  };
+
   handleSubmit(e) {
     e.preventDefault();
+    this.uploadImage("multer");
     
-    this.uploadImage(e, "multer");
-
     const newCommission = {
       title: this.state.title,
       description: this.state.description,
@@ -65,29 +71,31 @@ class NewCommissionForm extends Component {
       title: "",
       description: "",
       price: "",
+      image: "https://via.placeholder.com/300",
       redirectToCommissions: true
     })
   };
 
-  setDefaultImage(uploadType) {
-    if(uploadType === "multer") {
-      this.setState({
-        image: "https://via.placeholder.com/300"
-      });
-    };
-  };
+  // setDefaultImage(uploadType) {
+  //   if(uploadType === "multer") {
+  //     this.setState({
+  //       image: "https://via.placeholder.com/300"
+  //     });
+  //   };
+  // };
 
-  uploadImage(e, method) {
+  uploadImage(method) {
+    const uploadedImg = this.state.image;
     let imageFormObj;
     if(method === "multer") {
       imageFormObj = new FormData();
       imageFormObj.append("imageName", "multer-image-" + Date.now());
-      imageFormObj.append("imageData", e.target.files[0]);
+      imageFormObj.append("imageData", uploadedImg);
     };
 
-    this.setState({
-      image: URL.createObjectURL(e.target.files[0])
-    });
+    // this.setState({
+    //   image: URL.createObjectURL(e.target.files[0])
+    // });
 
     axios
       .post("/images/uploadmulter", imageFormObj)
@@ -95,11 +103,17 @@ class NewCommissionForm extends Component {
         if(data.data.success) {
           console.log("Image has been uploaded using multer");
           // this.setDefaultImage("multer");
+          this.setState({
+            image: "https://via.placeholder.com/300"
+          });
         };
       })
       .catch(err => {
         console.log(`Error uploading image with multer: ${err}`);
         // this.setDefaultImage("multer");
+        this.setState({
+          image: "https://via.placeholder.com/300"
+        });
       });
   };
 
@@ -172,7 +186,7 @@ class NewCommissionForm extends Component {
                   name="image"
                   id="image"
                   required
-                  onChange={e => this.uploadImage(e, "multer")}
+                  onChange={this.handleImageChange}
                 />
                 <img
                   src={this.state.image}
