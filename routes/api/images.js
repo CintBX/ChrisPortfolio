@@ -1,7 +1,8 @@
 const express = require('express');
-const Image = require('../../models/Image');
 const router = express.Router();
 const multer = require('multer');
+
+const Image = require('../../models/Image');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -28,35 +29,23 @@ const upload = multer({
   fileFilter: fileFilter
 });
 
-/*
-  stores image in uploads folder using multer
-  and creates a reference to the file
-*/
 // @route   POST /images/uploadmulter
 // @descrip Upload image to DB
 // @access  Private
 router.route('/uploadmulter')
   .post(upload.single('imageData'), (req, res, next) => {
-    console.log(req.body);
+    console.log(req.file.path);
     const newImage = new Image({
       imageName: req.body.imageName,
-      imageData: req.body.imageData
-      // imageData: req.file.path
+      imageData: req.file.path
     });
 
     newImage.save()
-      .then(image => res.json(image))
+      .then(image => {
+        res.json(image);
+        console.log(image);
+      })
       .catch(err => next(err));
-
-    // newImage.save()
-    //   .then(result => {
-    //     console.log(result);
-    //     res.status(200).json({
-    //       success: true,
-    //       document: result
-    //     });
-    //   })
-    //   .catch(err => next(err));
   });
 
   module.exports = router;

@@ -16,8 +16,15 @@ const CommissionSchema = new Schema({
     required: false
   },
   image: {
-    data: Buffer,
-    contentType: String
+    imageName: {
+      type: String,
+      default: "none",
+      required: false
+    },
+    imageData: {
+      type: String,
+      required: false
+    }
   },
   createdAt: {
     type: Date,
