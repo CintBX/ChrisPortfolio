@@ -18,6 +18,7 @@ import ProjectBody from './components/ProjectBody';
 // import EditProjectForm from './components/project/edit';
 import Footer from './components/Footer';
 import ContactMe from './components/ContactMe';
+import Default from './components/Default';
 import { loadUser } from './actions/userActions';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/show-commission/:id" component={CommissionShowPage} />
           <Route path="/new-commission" component={NewCommissionForm} />
           <Route exact path="/" component={CommissionBody} />
+          <Route component={Default} />
         </Switch>
         <Footer />
       </Container>
