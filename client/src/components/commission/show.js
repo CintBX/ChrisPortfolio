@@ -43,7 +43,7 @@ class CommissionShowPage extends Component {
 
   render() {
     const redirectToCommissions = this.state.redirectToCommissions;
-    const { _id, image, title, price, description } = this.props.commission.showCommission;
+    const { _id, imageData, title, price, description } = this.props.commission.showCommission;
     const { loading } = this.props.commission;
     const { isAuthenticated } = this.props.user;
 
@@ -55,14 +55,14 @@ class CommissionShowPage extends Component {
           { redirectToCommissions ? <Redirect to="/" /> : null }
           <Container>
             <Row>
-              <Col lg={5} xl={5}>
+              <Col>
                 <img
-                  // src={ image ? image : "https://via.placeholder.com/325" }
-                  src="https://via.placeholder.com/350"
+                  src={`../../${imageData}`}
                   alt="Commission Display"
+                  style={styles.image}
                 />
               </Col>
-              <Col lg={7} xl={7}>
+              <Col>
                 <h1><span style={styles.softenTone}>Title: </span>{ title }</h1>
                 <h3><span style={styles.softenTone}>Sold for: </span>${ price }</h3>
                 <h3><span style={styles.softenTone}>About this piece: </span></h3>
@@ -102,15 +102,17 @@ class CommissionShowPage extends Component {
 
 const styles = {
   container: {
-    paddingLeft: '15%',
-    paddingRight: '10%',
-    color: "white",
+    padding: '5%'
   },
   userButton: {
     padding: 20
   },
   softenTone: {
-    color: "lightgrey"
+    color: "#A7ACB1"
+  },
+  image: {
+    height: 415,
+    width: 375
   }
 };
 
