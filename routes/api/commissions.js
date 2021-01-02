@@ -58,7 +58,6 @@ router.post('/:id', authorize, (req, res) => {
       if(title) commission.title = title;
       if(description) commission.description = description;
       if(price) commission.price = price;
-      if(image) commission.image = image;
       return commission.save();
     })
     .then(savedCommission => res.json(savedCommission))

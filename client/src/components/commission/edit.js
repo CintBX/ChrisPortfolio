@@ -16,6 +16,7 @@ class EditCommissionForm extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    // this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       title: "",
@@ -47,6 +48,12 @@ class EditCommissionForm extends Component {
     });
   };
 
+  // handleImageChange(e) {
+  //   this.setState({
+  //     image: URL.createObjectURL(e.target.files[0])
+  //   });
+  // };
+
   handleSubmit(e) {
     e.preventDefault();
 
@@ -54,7 +61,6 @@ class EditCommissionForm extends Component {
     showCommission.title = this.state.title;
     showCommission.description = this.state.description;
     showCommission.price = this.state.price;
-
     this.props.editCommission(showCommission);
 
     this.setState({
@@ -67,7 +73,7 @@ class EditCommissionForm extends Component {
 
   render() {
     const redirectToShowPage = this.state.redirectToShowPage;
-    const { _id, title, description, price } = this.props.commission.showCommission;
+    const { _id, imageData, title, description, price } = this.props.commission.showCommission;
     const { isAuthenticated } = this.props.user;
 
     if(!isAuthenticated) {
@@ -79,8 +85,7 @@ class EditCommissionForm extends Component {
     } else {
       return (
         <div>
-          { redirectToShowPage ? <Redirect to={`/show-commission/${_id}`} /> : null }
-          <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
+          <Form style={styles.container} onSubmit={this.handleSubmit}>
             <h1 style={styles.title}>Edit this commission</h1>
             <FormGroup row>
               <Label for="title" sm={2}>Title</Label>
@@ -93,7 +98,6 @@ class EditCommissionForm extends Component {
                   onChange={this.handleChange}
                   value={this.state.title}
                   placeholder={title}
-                  autoFocus
                 />
               </Col>
             </FormGroup>
@@ -125,6 +129,17 @@ class EditCommissionForm extends Component {
                 />
               </Col>
             </FormGroup>
+
+            <FormGroup row>
+              <Label for="image" sm={2}>Image</Label>
+              <Col sm={10}>
+                <img
+                  src={`../../${imageData}`}
+                  alt="Commission Display"
+                  style={styles.imagePreview}
+                />
+              </Col>
+            </FormGroup>
   
             <FormGroup row>
               <Col sm={10}>
@@ -132,6 +147,7 @@ class EditCommissionForm extends Component {
               </Col>
             </FormGroup>
           </Form>
+          { redirectToShowPage ? <Redirect to={`/show-commission/${_id}`} /> : null }
         </div>
       );
     }
@@ -162,6 +178,11 @@ const styles = {
     textAlign:'center',
     paddingTop:50,
     paddingBottom:50
+  },
+  imagePreview: {
+    marginTop: 15,
+    width: 300,
+    height: 300
   }
 };
 
