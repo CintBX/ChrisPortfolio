@@ -52,7 +52,6 @@ class CommissionShowPage extends Component {
     } else {
       return (
         <div style={styles.container}>
-          { redirectToCommissions ? <Redirect to="/" /> : null }
           <Container>
             <Row>
               <Col>
@@ -94,6 +93,7 @@ class CommissionShowPage extends Component {
               </Col>
             </Row>
           </Container>
+          { redirectToCommissions ? <Redirect to="/" /> : null }
         </div>
       )
     }
