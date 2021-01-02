@@ -2,19 +2,45 @@ const express = require('express');
 const router = express.Router();
 const paginate = require('jw-paginate');
 const authorize = require('../../middleware/authorize');
+const multer = require('multer');
 
 // Commission model
 const Commission = require('../../models/Commission');
 
+// Image/multer resources
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  }
+});
+const fileFilter = (req, file, cb) => {
+  if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  };
+};
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
 // @route   POST /commissions
 // @descrip Create a new commission
 // @access  Private
-router.post('/', authorize, (req, res) => {
+router.route('/').post(upload.single('imageData'), authorize, (req, res) => {
   const newCommission = new Commission({
+    imageName: req.body.imageName,
+    imageData: req.file.path,
     title: req.body.title,
     description: req.body.description,
-    price: req.body.price,
-    image: req.body.image
+    price: req.body.price
   });
   newCommission.save()
     .then(commission => res.json(commission))

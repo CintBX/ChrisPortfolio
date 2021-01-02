@@ -2,6 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CommissionSchema = new Schema({
+  imageName: {
+    type: String,
+    default: "none",
+    required: true
+  },
+  imageData: {
+    type: String,
+    required: true
+  },
   title: {
     type: String,
     maxlength: 22,
@@ -14,17 +23,6 @@ const CommissionSchema = new Schema({
   price: {
     type: Number,
     required: false
-  },
-  image: {
-    imageName: {
-      type: String,
-      default: "none",
-      required: false
-    },
-    imageData: {
-      type: String,
-      required: false
-    }
   },
   createdAt: {
     type: Date,

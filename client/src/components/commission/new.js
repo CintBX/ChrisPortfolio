@@ -10,9 +10,7 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addCommission } from '../../actions/commissionActions';
-import { addImage } from '../../actions/imageActions';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
 import ImagePreview from '../../images/ImagePreview.png';
 
 class NewCommissionForm extends Component {
@@ -58,42 +56,14 @@ class NewCommissionForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    // Image (new)
     let imageFormObj = {};
     imageFormObj = new FormData();
     imageFormObj.append("imageName", "multer-image-" + Date.now());
     imageFormObj.append("imageData", e.target.elements.image.files[0]);
-
-    axios
-      .post("/images/uploadmulter", imageFormObj)
-      .then(data => {
-        if(data.data.success) {
-          alert("Image has been uploaded successfully");
-          this.setState({
-            image: ImagePreview
-          });
-        }
-      })
-      .catch(err => {
-        alert("Error while uploading image");
-        this.setState({
-          image: ImagePreview
-        });
-      });
-
-    
-    // Commission
-    // let imageFormObj = {};
-    // imageFormObj = new FormData();
-    // imageFormObj.append("imageName", "multer-image-" + Date.now());
-    // imageFormObj.append("imageData", e.target.elements.image.files[0]);
-
-    const newCommission = {
-      title: this.state.title,
-      description: this.state.description,
-      price: this.state.price,
-    };
-    this.props.addCommission(newCommission);
+    imageFormObj.append("title", this.state.title);
+    imageFormObj.append("description", this.state.description);
+    imageFormObj.append("price", this.state.price);
+    this.props.addCommission(imageFormObj);
 
     this.setState({
       title: "",
@@ -172,7 +142,7 @@ class NewCommissionForm extends Component {
                   type="file"
                   name="image"
                   id="image"
-                  // required
+                  required
                   onChange={e => this.handleImageChange(e)}
                 />
                 <img
@@ -233,4 +203,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, {addCommission, addImage})(NewCommissionForm);
+export default connect(mapStateToProps, {addCommission})(NewCommissionForm);

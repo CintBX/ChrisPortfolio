@@ -37,7 +37,10 @@ router.route('/uploadmulter')
     console.log(req.file.path);
     const newImage = new Image({
       imageName: req.body.imageName,
-      imageData: req.file.path
+      imageData: req.file.path,
+      title: req.body.title,
+      description: req.body.description,
+      price: req.body.price
     });
 
     newImage.save()

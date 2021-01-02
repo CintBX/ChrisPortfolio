@@ -10,7 +10,20 @@ const ImageSchema = new Schema({
   imageData: {
     type: String,
     required: true
-  }
+  },
+  title: {
+    type: String,
+    maxlength: 22,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: false
+  },
 });
 
 const Image = mongoose.model('Image', ImageSchema);
