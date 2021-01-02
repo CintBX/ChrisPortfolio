@@ -111,8 +111,8 @@ const styles = {
     color: "#A7ACB1"
   },
   image: {
-    height: 415,
-    width: 375
+    height: 475,
+    width: 390
   }
 };
 
