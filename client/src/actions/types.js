@@ -1,7 +1,3 @@
-// Images (TEMPORARY)
-export const ADD_IMAGE = 'ADD_IMAGE';
-export const ADD_IMAGE_FAIL = 'ADD_IMAGE_FAIL';
-
 // User Auth
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';
