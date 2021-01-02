@@ -57,7 +57,8 @@ class CommissionShowPage extends Component {
             <Row>
               <Col lg={5} xl={5}>
                 <img
-                  src={ image ? image : "https://via.placeholder.com/325" }
+                  // src={ image ? image : "https://via.placeholder.com/325" }
+                  src="https://via.placeholder.com/350"
                   alt="Commission Display"
                 />
               </Col>

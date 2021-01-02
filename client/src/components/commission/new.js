@@ -21,14 +21,11 @@ class NewCommissionForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.setDefaultImage = this.setDefaultImage.bind(this);
-    this.uploadImage = this.uploadImage.bind(this);
     this.state = {
       title: "",
       description: "",
       price: "",
       image: ImagePreview,
-      // image: {},
       redirectToCommissions: false
     };
   };
@@ -83,13 +80,18 @@ class NewCommissionForm extends Component {
           image: ImagePreview
         });
       });
+
     
     // Commission
+    // let imageFormObj = {};
+    // imageFormObj = new FormData();
+    // imageFormObj.append("imageName", "multer-image-" + Date.now());
+    // imageFormObj.append("imageData", e.target.elements.image.files[0]);
+
     const newCommission = {
       title: this.state.title,
       description: this.state.description,
       price: this.state.price,
-      // image: imageFormObj
     };
     this.props.addCommission(newCommission);
 
@@ -100,38 +102,6 @@ class NewCommissionForm extends Component {
       image: ImagePreview,
       redirectToCommissions: true
     })
-  };
-
-  uploadImage(e) {
-    console.log(`CONSOLE LOG: ${e.target.files}`)
-    // -> FileList array, with one object (id:0) of imagefile details
-    console.log(`CONSOLE LOG[0]: ${e.target.files[0]}`)
-    // -> That first FileList object
-    let imageFormObj = {};
-    imageFormObj = new FormData();
-    imageFormObj.append("imageName", "multer-image-" + Date.now());
-    imageFormObj.append("imageData", e.target.files[0]);
-
-    // this.setState({
-    //   image: URL.createObjectURL(e.target.files[0])
-    // });
-
-    axios
-      .post("/images/uploadmulter", imageFormObj)
-      .then(data => {
-        if(data.data.success) {
-          alert("Image has been uploaded successfully");
-          this.setState({
-            image: ImagePreview
-          });
-        }
-      })
-      .catch(err => {
-        alert("Error while uploading image");
-        this.setState({
-          image: ImagePreview
-        });
-      });
   };
 
   render() {
@@ -204,7 +174,6 @@ class NewCommissionForm extends Component {
                   id="image"
                   // required
                   onChange={e => this.handleImageChange(e)}
-                  // onChange={e => this.uploadImage(e)}
                 />
                 <img
                   src={this.state.image}
