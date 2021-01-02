@@ -4,9 +4,6 @@ const app = express();
 const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path');
-const multer = require('multer');
-const ejs = require('ejs');
-const fs = require('fs');
 
 // Activate dotenv for secure keys
 dotenv.config();
