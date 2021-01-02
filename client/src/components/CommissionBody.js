@@ -54,7 +54,6 @@ class CommissionBody extends Component {
 
   render() {
     const { loading } = this.props.commission;
-    const { isAuthenticated } = this.props.user;
     const { pager, pageOfCommissions } = this.state;
     if(loading) {
       return <h1 style={styles.container}>Your commissions are loading.  Please wait..</h1>
@@ -68,9 +67,9 @@ class CommissionBody extends Component {
                   <Col>
                     <Card style={styles.card} key={ commission._id }>
                       <Link to={`/show-commission/${commission._id}`}>
-                        <CardImg top width="100%" src="https://via.placeholder.com/250" alt="Card img" />
+                        <CardImg top style={styles.image} src={commission.imageData} alt="Commission Image" />
                         <CardBody>
-                          <CardText>
+                          <CardText style={styles.text}>
                             <span style={styles.title}>{ commission.title }</span>
                             <span style={styles.price}>${ commission.price }</span>
                           </CardText>
@@ -154,14 +153,20 @@ const styles = {
     marginTop: 20,
     marginBottom: 20
   },
+  image: {
+    height: 275,
+    width: 250
+  },
   title: {
     float: 'left',
-    fontWeight: 600
+    fontWeight: 600,
+    paddingBottom: 10
   },
   price: {
     float: 'right',
     fontStyle: 'italic',
-    fontSize: '1.1em'
+    fontSize: '1.1em',
+    paddingBottom: 10
   },
   deleteButton: {
     paddingLeft: '93%',
