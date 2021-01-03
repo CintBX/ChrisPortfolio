@@ -1,7 +1,7 @@
 /* Hover CSS */
 .commission-card {
-  transition: all 0.4s linear;
+  transition: all 0.5s linear;
 }
 .commission-card:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
