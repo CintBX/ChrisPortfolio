@@ -11,7 +11,8 @@ import {
   Input,
   NavLink,
   Col,
-  Alert
+  Alert,
+  Spinner
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -28,7 +29,8 @@ class LoginModal extends Component {
       modal: false,
       email: '',
       password: '',
-      msg: null
+      msg: null,
+      submitted: false
     };
   };
   
@@ -77,6 +79,9 @@ class LoginModal extends Component {
       password      
     };
     this.props.login(user);
+    this.setState({
+      submitted: true
+    });
   };
 
   render() {
@@ -120,7 +125,11 @@ class LoginModal extends Component {
               <FormGroup row>
                 <Label for="submit" sm={2}>Submit</Label>
                 <Col sm={10}>
-                  <Button color="primary" outline block>LOG IN</Button>
+                  {
+                    !this.state.submitted ?
+                    <Button color="primary" outline block>LOG IN</Button>
+                    : <span style={styles.loading}><Spinner color="primary" style={styles.spinner} /></span>
+                  }
                 </Col>
               </FormGroup>
 
@@ -142,6 +151,15 @@ const styles = {
   },
   link: {
     color: 'teal'
+  },
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: 10
+  },
+  spinner: {
+    height: '1.6em',
+    width: '1.6em'
   }
 }
 

@@ -10,7 +10,8 @@ import {
   Input,
   NavLink,
   Col,
-  Alert
+  Alert,
+  Spinner
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -28,7 +29,8 @@ class RegisterModal extends Component {
       name: '',
       email: '',
       password: '',
-      msg: null
+      msg: null,
+      submitted: false
     };
   };
 
@@ -78,6 +80,9 @@ class RegisterModal extends Component {
       password
     };
     this.props.register(newUser);
+    this.setState({
+      submitted: true
+    });
   };
 
   render() {
@@ -133,7 +138,11 @@ class RegisterModal extends Component {
               <FormGroup row>
                 <Label for="submit" sm={2}>Submit</Label>
                 <Col sm={10}>
-                  <Button color="primary" outline block>Sign Up</Button>
+                {
+                  !this.state.submitted ?
+                  <Button color="primary" outline block>LOG IN</Button>
+                  : <span style={styles.loading}><Spinner color="primary" style={styles.spinner} /></span>
+                }
                 </Col>
               </FormGroup>
             </Form>
@@ -143,6 +152,18 @@ class RegisterModal extends Component {
     );
   };
 };
+
+const styles = {
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: 10
+  },
+  spinner: {
+    height: '1.6em',
+    width: '1.6em'
+  }
+}
 
 const mapStateToProps = state => ({
   isAuthenticated: state.user.isAuthenticated,
