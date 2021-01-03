@@ -7,7 +7,7 @@ import {
 // import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import InfiniteExodus from '../images/InfiniteExodus.png';
-import LifeSkillPoints from '../images/LifeSkillPoints.jpg';
+import LifeSkillPoints from '../images/LifeSkillPoints.png';
 
 class ProjectBody extends Component {
   // constructor(props) {
@@ -43,7 +43,7 @@ class ProjectBody extends Component {
             <a href="https://infiniteexodus.com/" target="_blank" rel="noopener noreferrer">
               <img style={styles.exodus} src={InfiniteExodus} alt="Visit the world of Infinite Exodus" />
             </a>
-            <div style={styles.exodusText}>
+            <div style={styles.text}>
               <h1>Infinite Exodus</h1>
               <p>
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
@@ -68,7 +68,7 @@ class ProjectBody extends Component {
             <a href="http://lifeskillpoints.com/" target="_blank" rel="noopener noreferrer">
               <img style={styles.lifeskillpoints} src={LifeSkillPoints} alt="Improve yourself with Life Skill Points" />
             </a>
-            <div style={styles.lifeskillpointsText}>
+            <div style={styles.text}>
               <h1>Life Skill Points, LLC.</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
@@ -100,25 +100,16 @@ const styles = {
     marginLeft: 'auto',
     marginRight: 'auto'
   },
-  exodusText: {
-    padding: 60,
-    textAlign: 'center'
-  },
   lifeskillpointsContainer: {
-    color: "black",
-    marginLeft: 100,
-    marginRight: 100,
-    height: '75%'
+    color: "black"
   },
   lifeskillpoints: {
     display: 'flex',
     justifyContent: 'center',
-    width: '65%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    padding: 100
+    width: '100%'
   },
-  lifeskillpointsText: {
+  text: {
+    padding: 60,
     textAlign: 'center'
   },
 };

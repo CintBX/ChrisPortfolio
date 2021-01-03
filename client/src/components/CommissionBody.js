@@ -145,8 +145,7 @@ class CommissionBody extends Component {
 const styles = {
   cardGroup: {
     color: 'black',
-    justifyContent: 'center',
-    textAlign: 'center'
+    justifyContent: 'center'
   },
   card: {
     width: 250,
