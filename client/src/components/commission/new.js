@@ -153,8 +153,10 @@ class NewCommissionForm extends Component {
             </FormGroup>
   
             <FormGroup row>
+              <Col sm={2}>
+              </Col>
               <Col sm={10}>
-                <Button outline color="info" style={styles.submitButton}>Submit</Button>
+                <Button outline block color="info" style={styles.submitButton}>Submit</Button>
               </Col>
             </FormGroup>
           </Form>

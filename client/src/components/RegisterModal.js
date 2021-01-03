@@ -131,6 +131,7 @@ class RegisterModal extends Component {
               </FormGroup>
 
               <FormGroup row>
+                <Label for="submit" sm={2}>Submit</Label>
                 <Col sm={10}>
                   <Button color="primary" outline block>Sign Up</Button>
                 </Col>

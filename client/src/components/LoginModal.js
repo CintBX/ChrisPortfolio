@@ -118,8 +118,9 @@ class LoginModal extends Component {
               </FormGroup>
 
               <FormGroup row>
+                <Label for="submit" sm={2}>Submit</Label>
                 <Col sm={10}>
-                  <Button color="primary" outline block>Login</Button>
+                  <Button color="primary" outline block>LOG IN</Button>
                 </Col>
               </FormGroup>
 
