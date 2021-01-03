@@ -5,3 +5,10 @@
 .commission-card:hover {
   transform: scale(1.05);
 }
+.user-btn {
+  font-weight: 600;
+  transition: all 0.3s linear;
+}
+.user-btn:hover {
+  transform: scale(0.95);
+}

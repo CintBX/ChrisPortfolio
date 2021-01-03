@@ -88,7 +88,7 @@ class EditCommissionForm extends Component {
           <Form style={styles.container} onSubmit={this.handleSubmit}>
             <h1 style={styles.title}>Edit this commission</h1>
             <FormGroup row>
-              <Label for="title" sm={2}>Title</Label>
+              <Label for="title" style={styles.labelText} sm={2}>Title</Label>
               <Col sm={10}>
                 <Input
                   type="text"
@@ -103,7 +103,7 @@ class EditCommissionForm extends Component {
             </FormGroup>
   
             <FormGroup row>
-              <Label for="description" sm={2}>Description</Label>
+              <Label for="description" style={styles.labelText} sm={2}>Description</Label>
               <Col sm={10}>
                 <Input
                   type="textarea"
@@ -117,7 +117,7 @@ class EditCommissionForm extends Component {
             </FormGroup>
   
             <FormGroup row>
-              <Label for="price" sm={2}>Price</Label>
+              <Label for="price" style={styles.labelText} sm={2}>Price</Label>
               <Col sm={10}>
                 <Input
                   type="number"
@@ -131,7 +131,7 @@ class EditCommissionForm extends Component {
             </FormGroup>
 
             <FormGroup row>
-              <Label for="image" sm={2}>Image</Label>
+              <Label for="image" style={styles.labelText} sm={2}>Image</Label>
               <Col sm={10}>
                 <img
                   src={`../../${imageData}`}
@@ -161,6 +161,9 @@ const styles = {
   },
   title: {
     paddingBottom: 50
+  },
+  labelText: {
+    fontWeight: 'bold'
   },
   submitContainer: {
     paddingTop: 50,

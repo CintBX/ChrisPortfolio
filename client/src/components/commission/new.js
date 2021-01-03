@@ -92,7 +92,7 @@ class NewCommissionForm extends Component {
             <h1 style={styles.title}>Upload a new Commission</h1>
             
             <FormGroup row>
-              <Label for="title" sm={2}>Title</Label>
+              <Label for="title" style={styles.labelText} sm={2}>Title</Label>
               <Col sm={10}>
                 <Input
                   type="text"
@@ -108,7 +108,7 @@ class NewCommissionForm extends Component {
             </FormGroup>
   
             <FormGroup row>
-              <Label for="description" sm={2}>Description</Label>
+              <Label for="description" style={styles.labelText} sm={2}>Description</Label>
               <Col sm={10}>
                 <Input
                   type="textarea"
@@ -122,7 +122,7 @@ class NewCommissionForm extends Component {
             </FormGroup>
   
             <FormGroup row>
-              <Label for="price" sm={2}>Price</Label>
+              <Label for="price" style={styles.labelText} sm={2}>Price</Label>
               <Col sm={10}>
                 <Input
                   type="number"
@@ -136,7 +136,7 @@ class NewCommissionForm extends Component {
             </FormGroup>
 
             <FormGroup row>
-              <Label for="image" sm={2}>Image</Label>
+              <Label for="image" style={styles.labelText} sm={2}>Image</Label>
               <Col sm={10}>
                 <Input
                   type="file"
@@ -172,6 +172,9 @@ const styles = {
   },
   title: {
     paddingBottom: 50
+  },
+  labelText: {
+    fontWeight: 'bold'
   },
   submitContainer: {
     paddingTop: 50,

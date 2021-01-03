@@ -77,15 +77,17 @@ class CommissionShowPage extends Component {
                         style={styles.userButton}
                         outline
                         color="warning"
-                      >Edit
+                        className="user-btn"
+                      >Edit Details
                         </Button>
                     </Link>
                     <Button
                       style={styles.userButton}
                       outline
                       color="danger"
+                      className="user-btn"
                       onClick={() => this.handleDelete(_id)}
-                    >Delete
+                    >Delete this Commission
                     </Button>
                   </div>
                   : null

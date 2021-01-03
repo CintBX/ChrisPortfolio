@@ -61,7 +61,7 @@ class ContactMe extends Component {
           </div>
 
           <FormGroup row>
-            <Label for="from_name" sm={2}>Your Name</Label>
+            <Label for="from_name" style={styles.labelText} sm={2}>Your Name</Label>
             <Col sm={10}>
               <Input
                 type="text"
@@ -75,7 +75,7 @@ class ContactMe extends Component {
           </FormGroup>
 
           <FormGroup row>
-            <Label for="from_email" sm={2}>Your Email</Label>
+            <Label for="from_email" style={styles.labelText} sm={2}>Your Email</Label>
             <Col sm={10}>
               <Input
                 type="email"
@@ -88,7 +88,7 @@ class ContactMe extends Component {
           </FormGroup>
 
           <FormGroup row>
-            <Label for="message" sm={2}>Your Message</Label>
+            <Label for="message" style={styles.labelText} sm={2}>Your Message</Label>
             <Col sm={10}>
               <Input
                 type="textarea"
@@ -129,6 +129,9 @@ const styles = {
   title: {
     paddingBottom: 50,
     textAlign: 'center'
+  },
+  labelText: {
+    fontWeight: 'bold'
   },
   submitContainer: {
     display: 'flex',
