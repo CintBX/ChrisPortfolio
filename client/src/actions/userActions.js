@@ -33,6 +33,7 @@ export const register = ({ name, email, password }) => dispatch => {
 
 // Log in
 export const login = ({ email, password }) => dispatch => {
+  dispatch({ type: USER_LOADING });
   const config = {
     headers: {
       "Content-Type": "application/json"

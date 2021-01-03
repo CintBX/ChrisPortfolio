@@ -29,8 +29,7 @@ class LoginModal extends Component {
       modal: false,
       email: '',
       password: '',
-      msg: null,
-      submitted: false
+      msg: null
     };
   };
   
@@ -38,7 +37,8 @@ class LoginModal extends Component {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    clearErrors: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool
   };
 
   componentDidUpdate(prevProps) {
@@ -79,12 +79,10 @@ class LoginModal extends Component {
       password      
     };
     this.props.login(user);
-    this.setState({
-      submitted: true
-    });
   };
 
   render() {
+    const { isLoading } = this.props;
     return (
       <div style={styles.linkContainer}>
         <NavLink style={styles.link} onClick={this.toggle} href="#">
@@ -126,7 +124,7 @@ class LoginModal extends Component {
                 <Label for="submit" sm={2}>Submit</Label>
                 <Col sm={10}>
                   {
-                    !this.state.submitted ?
+                    !isLoading ?
                     <Button color="primary" outline block>LOG IN</Button>
                     : <span style={styles.loading}><Spinner color="primary" style={styles.spinner} /></span>
                   }
@@ -165,6 +163,7 @@ const styles = {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.user.isAuthenticated,
+  isLoading: state.user.isLoading,
   error: state.error
 });
 
