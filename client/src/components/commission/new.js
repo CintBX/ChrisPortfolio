@@ -87,7 +87,6 @@ class NewCommissionForm extends Component {
     } else {
       return (
         <div>
-          { redirectToCommissions ? <Redirect to="/" /> : null }
           <Form style={styles.container} autoFocus={false} onSubmit={this.handleSubmit}>
             <h1 style={styles.title}>Upload a new Commission</h1>
             
@@ -159,6 +158,7 @@ class NewCommissionForm extends Component {
               </Col>
             </FormGroup>
           </Form>
+          { redirectToCommissions ? <Redirect to="/" /> : null }
         </div>
       );
     }
