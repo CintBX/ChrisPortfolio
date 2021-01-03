@@ -6,7 +6,8 @@ import {
   CardBody,
   CardText,
   Row,
-  Col
+  Col,
+  Spinner
 } from 'reactstrap';
 import { getCommissions } from '../actions/commissionActions';
 import PropTypes from 'prop-types';
@@ -56,7 +57,7 @@ class CommissionBody extends Component {
     const { loading } = this.props.commission;
     const { pager, pageOfCommissions } = this.state;
     if(loading) {
-      return <h1 style={styles.container}>Your commissions are loading.  Please wait..</h1>
+      return <h1 style={styles.loading}><Spinner style={styles.spinner} color="primary" /></h1>
     } else {
       return (
         <div>
@@ -145,6 +146,15 @@ class CommissionBody extends Component {
 };
 
 const styles = {
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: 50
+  },
+  spinner: {
+    width: '4em',
+    height: '4em'
+  },
   cardGroup: {
     color: 'black',
     justifyContent: 'center'

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Spinner
+} from 'reactstrap';
 import { showCommission, deleteCommission } from '../../actions/commissionActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -48,7 +54,7 @@ class CommissionShowPage extends Component {
     const { isAuthenticated } = this.props.user;
 
     if(loading) {
-      return <h1>This commission is loading.  Please wait..</h1>
+      return <h1 style={styles.loading}><Spinner style={styles.spinner} color="primary" /></h1>
     } else {
       return (
         <div style={styles.container}>
@@ -103,6 +109,15 @@ class CommissionShowPage extends Component {
 };
 
 const styles = {
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: 50
+  },
+  spinner: {
+    width: '4em',
+    height: '4em'
+  },
   container: {
     padding: '5%'
   },
