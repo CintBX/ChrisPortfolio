@@ -63,15 +63,17 @@ class CommissionBody extends Component {
           <CardDeck style={styles.cardGroup}>
             {
               pageOfCommissions && pageOfCommissions.map(commission => (
-                <Row key={ commission._id }>
+                <Row key={ commission._id } className="commission-container">
                   <Col>
-                    <Card style={styles.card}>
+                    <Card style={styles.card} className="commission-card">
                       <Link to={`/show-commission/${commission._id}`}>
                         <CardImg top style={styles.image} src={commission.imageData} alt="Commission Image" />
                         <CardBody>
                           <CardText style={styles.text}>
                             <span style={styles.title}>{ commission.title }</span>
-                            <span style={styles.price}>${ commission.price }</span>
+                            <span style={styles.price}>
+                              { commission.price ? "$" + commission.price : null }
+                            </span>
                           </CardText>
                         </CardBody>
                       </Link>
@@ -160,6 +162,10 @@ const styles = {
     float: 'left',
     fontWeight: 600,
     paddingBottom: 10
+  },
+  text: {
+    fontSize: '1.1em',
+    color: 'teal'
   },
   price: {
     float: 'right',
