@@ -19,7 +19,7 @@ class Footer extends Component {
           <Col sm="auto">
             <a href="https://www.facebook.com/chris.d.3150"
               target="_blank"
-              ref="noopener noreferrer"
+              rel="noopener noreferrer"
               style={styles.link}
             >
               <MDBBtn size="lg" social="fb" color="blue">
@@ -31,7 +31,7 @@ class Footer extends Component {
           <Col sm="auto">
             <a href="https://www.instagram.com/virtuoso_lume/"
               target="_blank"
-              ref="noopener noreferrer"
+              rel="noopener noreferrer"
               style={styles.link}
             >
               <MDBBtn size="lg" social="ins" className="peach-gradient">
@@ -43,7 +43,7 @@ class Footer extends Component {
           <Col sm="auto">
             <a href="https://www.youtube.com/channel/UCj8pYnnOtWp5OKHzVOh0R3A"
               target="_blank"
-              ref="noopener noreferrer"
+              rel="noopener noreferrer"
               style={styles.link}
             >
               <MDBBtn size="lg" social="yt" color="red">
