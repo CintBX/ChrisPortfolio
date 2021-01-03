@@ -168,14 +168,14 @@ const styles = {
     height: 275,
     width: 250
   },
+  text: {
+    fontSize: '1.1em',
+    color: 'black'
+  },
   title: {
     float: 'left',
     fontWeight: 600,
     paddingBottom: 10
-  },
-  text: {
-    fontSize: '1.1em',
-    color: 'teal'
   },
   price: {
     float: 'right',

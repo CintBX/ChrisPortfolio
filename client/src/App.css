@@ -12,3 +12,10 @@
 .user-btn:hover {
   transform: scale(0.95);
 }
+
+/*
+ * Google Fonts
+ */
+ * {
+  font-family: 'Nanum Gothic', sans-serif;
+ }
