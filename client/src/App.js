@@ -20,6 +20,7 @@ import Footer from './components/Footer';
 import ContactMe from './components/ContactMe';
 import Default from './components/Default';
 import { loadUser } from './actions/userActions';
+import bgImage from './images/bg3.jpg';
 
 function App() {
   useEffect(() => {
@@ -49,7 +50,10 @@ function App() {
 
 const styles = {
   container: {
-    backgroundColor: 'black',
+    backgroundImage: "url(" + bgImage + ")",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
     color: 'white',
     paddingTop: 100,
     paddingLeft: '7%',
