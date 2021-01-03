@@ -38,7 +38,8 @@ class RegisterModal extends Component {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    clearErrors: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool
   };
 
   componentDidUpdate(prevProps) {
@@ -86,6 +87,7 @@ class RegisterModal extends Component {
   };
 
   render() {
+    const { isLoading } = this.props;
     return (
       <div>
         <NavLink onClick={this.toggle} href="#">
@@ -139,7 +141,7 @@ class RegisterModal extends Component {
                 <Label for="submit" sm={2}>Submit</Label>
                 <Col sm={10}>
                 {
-                  !this.state.submitted ?
+                  !isLoading ?
                   <Button color="primary" outline block>LOG IN</Button>
                   : <span style={styles.loading}><Spinner color="primary" style={styles.spinner} /></span>
                 }
@@ -167,6 +169,7 @@ const styles = {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.user.isAuthenticated,
+  isLoading: state.user.isLoading,
   error: state.error
 });
 

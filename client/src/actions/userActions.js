@@ -13,6 +13,7 @@ import { returnErrors } from './errorActions';
 
 // Register
 export const register = ({ name, email, password }) => dispatch => {
+  dispatch({ type: USER_LOADING });
   const config = {
     headers: {
       "Content-Type": "application/json"
