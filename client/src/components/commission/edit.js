@@ -160,10 +160,12 @@ const styles = {
     paddingRight: '5%'
   },
   title: {
-    paddingBottom: 50
+    paddingBottom: 50,
+    textAlign: 'center'
   },
   labelText: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textShadow: '2px 2px 4px black'
   },
   submitContainer: {
     paddingTop: 50,

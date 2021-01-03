@@ -131,7 +131,8 @@ const styles = {
     textAlign: 'center'
   },
   labelText: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textShadow: '2px 2px 4px black'
   },
   submitContainer: {
     display: 'flex',
