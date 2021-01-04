@@ -46,18 +46,20 @@ class ProjectBody extends Component {
             <div style={styles.text}>
               <h1>Infinite Exodus</h1>
               <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
-                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore 
-                veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
-                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. 
-                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, 
-                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et 
-                dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum 
-                exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
-                consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse 
-                quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas 
-                nulla pariatur?"
+                If you lived in a fantasy world, what would you be like?
+                Exodus is a collaborative story and roleplay universe where fantasy and futurism collide.
+                In addition to the many stories in the series, creators from around the world can come together
+                in a tabletop-like setting to experience Exodus in their own unique way.
+              </p>
+              <p>
+                Exodus has been in development by myself and my brothers for over ten years.
+                At the time, I felt both my writing and artistic skills lacked too much to properly publish
+                Exodus the way we wanted to. During development however, people kept asking us about the
+                project with growing interest because they wanted to have "characters in the story".
+                As more and more people inquired, my enthusiasm grew. 
+                Overtime, my love for roleplay along with the curse of forever-DMing blended in with our comic
+                plans. This led us to evolve Exodus into a universal roleplaying experience
+                that not even I could have imagined.
               </p>
             </div>
           </Jumbotron>
@@ -71,14 +73,16 @@ class ProjectBody extends Component {
             <div style={styles.text}>
               <h1>Life Skill Points, LLC.</h1>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Who are you, really? 
+                We all go through life with the vague notion of what we want to do, and the things we like, 
+                but what is it that makes us... Us?
               </p>
               <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-                deserunt mollit anim id est laborum.
+                Lifeskillpoints(LSP) is the story of the journey of our lives. 
+                No matter what you do, there is someone ahead of you who you can learn from and someone behind 
+                who can learn from you. 
+                LSP bridges those roads in a way that educates and entertains, breaking our life down into the 
+                game that it is.
               </p>
             </div>
           </Jumbotron>
