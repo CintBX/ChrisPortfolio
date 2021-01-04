@@ -16,6 +16,24 @@
 /*
  * Google Fonts
  */
- * {
-  font-family: 'Nanum Gothic', sans-serif;
- }
+* {
+font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* 
+ * Position adjust for commissions (index & show) on small screen
+ */
+
+ /* Commission Body: Image is mal-positioned */
+@media screen and (max-width: 565px) {
+  .body-adjust {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .show-pg-adjust {
+    margin-top: 30px
+  }
+}

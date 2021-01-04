@@ -60,14 +60,14 @@ class CommissionShowPage extends Component {
         <div style={styles.container}>
           <Container>
             <Row>
-              <Col>
+              <Col sm={12} lg={6} xl={6}>
                 <img
                   src={`../../${imageData}`}
                   alt="Commission Display"
                   style={styles.image}
                 />
               </Col>
-              <Col>
+              <Col className="show-pg-adjust">
                 <h1><span style={styles.softenTone}>Title: </span>{ title }</h1>
                 <h3><span style={styles.softenTone}>Sold for: </span>${ price }</h3>
                 <h3><span style={styles.softenTone}>About this piece: </span></h3>
@@ -128,8 +128,7 @@ const styles = {
     color: "#A7ACB1"
   },
   image: {
-    height: 475,
-    width: 390
+    width: '100%'
   }
 };
 

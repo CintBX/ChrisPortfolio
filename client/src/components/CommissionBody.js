@@ -64,9 +64,9 @@ class CommissionBody extends Component {
           <CardDeck style={styles.cardGroup}>
             {
               pageOfCommissions && pageOfCommissions.map(commission => (
-                <Row key={ commission._id } className="commission-container">
+                <Row key={ commission._id }>
                   <Col>
-                    <Card style={styles.card} className="commission-card">
+                    <Card style={styles.card} className="commission-card body-adjust">
                       <Link to={`/show-commission/${commission._id}`}>
                         <CardImg top style={styles.image} src={commission.imageData} alt="Commission Image" />
                         <CardBody>
