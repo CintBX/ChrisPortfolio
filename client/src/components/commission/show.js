@@ -60,7 +60,7 @@ class CommissionShowPage extends Component {
         <div style={styles.container}>
           <Container>
             <Row>
-              <Col sm={12} lg={6} xl={6}>
+              <Col xs={12} sm={12} lg={6} xl={6}>
                 <img
                   src={`../../${imageData}`}
                   alt="Commission Display"
