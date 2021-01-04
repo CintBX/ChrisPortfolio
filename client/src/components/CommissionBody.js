@@ -183,10 +183,6 @@ const styles = {
     fontSize: '1.1em',
     paddingBottom: 10
   },
-  deleteButton: {
-    paddingLeft: '93%',
-    color: 'red'
-  },
   paginationContainer: {
     marginTop: 20,
     display: 'flex',
