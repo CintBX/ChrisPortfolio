@@ -65,7 +65,7 @@ class CommissionBody extends Component {
             {
               pageOfCommissions && pageOfCommissions.map(commission => (
                 <Row key={ commission._id }>
-                  <Col>
+                  <Col style={styles.cardWrap}>
                     <Card style={styles.card} className="commission-card body-adjust">
                       <Link to={`/show-commission/${commission._id}`}>
                         <CardImg top style={styles.image} src={commission.imageData} alt="Commission Image" />
@@ -158,6 +158,9 @@ const styles = {
   cardGroup: {
     color: 'black',
     justifyContent: 'center'
+  },
+  cardWrap: {
+    padding: 25
   },
   card: {
     width: 250,
