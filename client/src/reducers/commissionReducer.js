@@ -17,6 +17,7 @@ const initialState = {
 	loading: false,
 };
 
+// eslint-disable-next-line
 export default function(state = initialState, action) {
   switch(action.type) {
     case COMMISSIONS_LOADING:
