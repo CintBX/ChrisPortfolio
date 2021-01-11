@@ -11,7 +11,7 @@ dotenv.config();
 // Commission model
 const Commission = require('../../models/Commission');
 
-// AWS Vars
+// AWS Configuration
 const ID = process.env.AWS_ACCESS_KEY_ID;
 const SECRET = process.env.AWS_SECRET_ACCESS_KEY;
 const BUCKET_NAME = process.env.S3_BUCKET;
@@ -20,19 +20,15 @@ const s3 = new AWS.S3({
   secretAccessKey: SECRET
 });
 
-// AWS Upload function
 const uploadFile = (imagename, imagedata) => {
-  // Read content from the file
   const fileContent = fs.readFileSync(imagedata);
 
-  // Setting up S3 upload params
   const params = {
     Bucket: BUCKET_NAME,
     Key: imagename,
     Body: fileContent
   };
 
-  // Uploading files to the bucket
   s3.upload(params, function(err, data) {
     if(err) {
       throw err;
@@ -45,9 +41,7 @@ const uploadFile = (imagename, imagedata) => {
 // @descrip Create a new commission
 // @access  Private
 router.route('/').post(upload.single('imageData'), authorize, (req, res) => {
-  // Hopefully upload this bitch to S3
   uploadFile(req.body.imageName, req.file.path);
-
   const newCommission = new Commission({
     imageName: req.body.imageName,
     imageData: req.file.path,
