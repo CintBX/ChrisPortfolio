@@ -3,45 +3,44 @@ const router = express.Router();
 const paginate = require('jw-paginate');
 const authorize = require('../../middleware/authorize');
 const upload = require('../../middleware/upload');
-// const fs = require('fs');
-// const AWS = require('aws-sdk');
-// const dotenv = require('dotenv');
-// dotenv.config();
+const fs = require('fs');
+const AWS = require('aws-sdk');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Commission model
 const Commission = require('../../models/Commission');
 
-// // AWS Configuration
-// const ID = process.env.AWS_ACCESS_KEY_ID;
-// const SECRET = process.env.AWS_SECRET_ACCESS_KEY;
-// const BUCKET_NAME = process.env.S3_BUCKET;
-// const s3 = new AWS.S3({
-//   accessKeyId: ID,
-//   secretAccessKey: SECRET
-// });
+// AWS Configuration
+const ID = process.env.AWS_ACCESS_KEY_ID;
+const SECRET = process.env.AWS_SECRET_ACCESS_KEY;
+const BUCKET_NAME = process.env.S3_BUCKET;
+const s3 = new AWS.S3({
+  accessKeyId: ID,
+  secretAccessKey: SECRET
+});
 
-// const uploadFile = (imagename, imagedata) => {
-//   const fileContent = fs.readFileSync(imagedata);
+const uploadFile = (imagename, imagedata) => {
+  const fileContent = fs.readFileSync(imagedata);
+  const params = {
+    Bucket: BUCKET_NAME,
+    Key: imagename,
+    Body: fileContent
+  };
 
-//   const params = {
-//     Bucket: BUCKET_NAME,
-//     Key: imagename,
-//     Body: fileContent
-//   };
-
-//   s3.upload(params, function(err, data) {
-//     if(err) {
-//       throw err;
-//     }
-//     console.log(`File uploaded to S3 successfully: ${data.Location}`)
-//   });
-// };
+  s3.upload(params, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    console.log(`File uploaded to S3 successfully: ${data.Location}`)
+  });
+};
 
 // @route   POST /commissions
 // @descrip Create a new commission
 // @access  Private
 router.route('/').post(upload.single('imageData'), authorize, (req, res) => {
-  // uploadFile(req.body.imageName, req.file.path);
+  uploadFile(req.body.imageName, req.file.path);
   const newCommission = new Commission({
     imageName: req.body.imageName,
     imageData: req.file.path,
