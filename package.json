@@ -1,5 +1,6 @@
 {
   "name": "chris-portfolio",
+  "homepage": "http://www.virtuoso-lume.com/",
   "version": "1.0.0",
   "description": "Portfolio Application for Chris D",
   "main": "server.js",
