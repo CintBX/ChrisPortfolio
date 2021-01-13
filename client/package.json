@@ -1,6 +1,5 @@
 {
   "name": "client",
-  "homepage": "http://www.virtuoso-lume.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
