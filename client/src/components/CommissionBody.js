@@ -172,19 +172,17 @@ const styles = {
     width: 250
   },
   text: {
-    fontSize: '1.1em',
-    color: 'black'
+    color: 'black',
+    paddingBottom: 15
   },
   title: {
     float: 'left',
     fontWeight: 600,
-    paddingBottom: 10
   },
   price: {
     float: 'right',
     fontStyle: 'italic',
     fontSize: '1.1em',
-    paddingBottom: 10
   },
   paginationContainer: {
     marginTop: 20,
