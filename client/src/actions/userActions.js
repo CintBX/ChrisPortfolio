@@ -11,7 +11,7 @@ import {
 } from './types';
 import { returnErrors } from './errorActions';
 
-// Register
+// Register (disabled)
 export const register = ({ name, email, password }) => dispatch => {
   dispatch({ type: USER_LOADING });
   const config = {

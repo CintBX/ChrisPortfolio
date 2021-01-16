@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 import profilePic from '../images/pr8.jpg';
 import { NavLink } from 'react-router-dom';
-import RegisterModal from './RegisterModal';
+// import RegisterModal from './RegisterModal';
 import LoginModal from './LoginModal';
 import Logout from './Logout';
 import { connect } from 'react-redux';
@@ -29,7 +29,7 @@ class Header extends Component {
     );
     const guestLinks = (
       <Fragment>
-        <RegisterModal/>
+        {/* <RegisterModal/> */}
         <LoginModal />
       </Fragment>
     );
