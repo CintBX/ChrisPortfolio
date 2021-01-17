@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
     .sort({ createdAt: -1 })        // -1 is descending order; 1 is ascending order
     .then(commissions => {
       const page = parseInt(req.query.page) || 1;
-      const pageSize = 12;
+      const pageSize = 8;
       const pager = paginate(commissions && commissions.length, page, pageSize);
       const pageOfCommissions = commissions && commissions.slice(pager.startIndex, pager.endIndex + 1);
       return res.json({ pager, pageOfCommissions });
