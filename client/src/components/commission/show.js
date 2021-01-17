@@ -69,7 +69,13 @@ class CommissionShowPage extends Component {
               </Col>
               <Col className="show-pg-adjust">
                 <h1><span style={styles.softenTone}>Title: </span>{ title }</h1>
-                <h3><span style={styles.softenTone}>Sold for: </span>${ price }</h3>
+                <h3>
+                  {
+                    price ? 
+                    <div><span style={styles.softenTone}>Sold for: </span>${price}</div>
+                    : null
+                  }
+                </h3>
                 <h3><span style={styles.softenTone}>About this piece: </span></h3>
                 <p>
                   { description }
