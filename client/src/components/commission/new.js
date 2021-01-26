@@ -24,6 +24,7 @@ class NewCommissionForm extends Component {
       description: "",
       price: "",
       image: ImagePreview,
+      uploadType: "",
       redirectToCommissions: false
     };
   };
@@ -35,7 +36,7 @@ class NewCommissionForm extends Component {
       });
     };
   };
-
+  
   static propTypes = {
     addCommission: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
@@ -48,8 +49,10 @@ class NewCommissionForm extends Component {
   };
 
   handleImageChange(e) {
+    const filename = e.target.files[0].name;
     this.setState({
-      image: URL.createObjectURL(e.target.files[0])
+      image: URL.createObjectURL(e.target.files[0]),
+      uploadType: filename.slice(filename.length - 3)
     });
   };
 
@@ -121,7 +124,7 @@ class NewCommissionForm extends Component {
             </FormGroup>
   
             <FormGroup row>
-              <Label for="price" style={styles.labelText} sm={2}>Price</Label>
+              <Label for="price" style={styles.labelText} sm={2}>Price (optional)</Label>
               <Col sm={10}>
                 <Input
                   type="number"
@@ -144,11 +147,22 @@ class NewCommissionForm extends Component {
                   required
                   onChange={e => this.handleImageChange(e)}
                 />
-                <img
-                  src={this.state.image}
-                  alt="Commission Preview"
-                  style={styles.imagePreview}
-                />
+                {
+                  this.state.uploadType === "mp4" ?
+                  <video
+                    src={this.state.image}
+                    alt="Commission Preview"
+                    style={styles.imagePreview}
+                    autoPlay={true}
+                    loop
+                  />
+                  :
+                  <img
+                    src={this.state.image}
+                    alt="Commission Preview"
+                    style={styles.imagePreview}
+                  />
+                }
               </Col>
             </FormGroup>
   
