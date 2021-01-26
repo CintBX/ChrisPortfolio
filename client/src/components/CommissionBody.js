@@ -69,7 +69,14 @@ class CommissionBody extends Component {
                     <Card style={styles.card} className="commission-card body-adjust">
                       <Link to={`/show-commission/${commission._id}`}>
                         {
-                          commission && commission.imageData.slice(commission.imageData.length - 3) === "mp4" ?
+                          commission && commission.imageData.slice(commission.imageData.length - 3) !== "mp4" ?
+                          <CardImg
+                            top
+                            style={styles.image}
+                            src={commission.imageData}
+                            alt="Commission Image" 
+                          />
+                          :
                           <video
                             src={commission.imageData}
                             alt="Commission Video"
@@ -77,13 +84,6 @@ class CommissionBody extends Component {
                             autoPlay={true}
                             loop
                           />
-                          :
-                          <CardImg
-                            top
-                            style={styles.image}
-                            src={commission.imageData}
-                            alt="Commission Image" 
-                          />  
                         }
                         <CardBody>
                           <CardText style={styles.text}>

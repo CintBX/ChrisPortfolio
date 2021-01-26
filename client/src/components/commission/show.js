@@ -62,19 +62,19 @@ class CommissionShowPage extends Component {
             <Row>
               <Col xs={12} sm={12} lg={6} xl={6}>
                 {
-                  imageData && imageData.slice(imageData.length - 3) === "mp4" ?
+                  imageData && imageData.slice(imageData.length - 3) !== "mp4" ?
+                  <img
+                    src={`../../${imageData}`}
+                    alt="Commission Display"
+                    style={styles.image}
+                  />
+                  :
                   <video
                     src={`../../${imageData}`}
                     alt="Commission Video"
                     style={styles.image}
                     autoPlay={true}
                     loop
-                  />
-                  :
-                  <img
-                    src={`../../${imageData}`}
-                    alt="Commission Display"
-                    style={styles.image}
                   />
                 }
               </Col>
