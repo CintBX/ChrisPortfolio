@@ -69,7 +69,7 @@ class CommissionBody extends Component {
                     <Card style={styles.card} className="commission-card body-adjust">
                       <Link to={`/show-commission/${commission._id}`}>
                         {
-                          commission.imageData.slice(commission.imageData.length - 3) === "mp4" ?
+                          commission && commission.imageData.slice(commission.imageData.length - 3) === "mp4" ?
                           <video
                             src={commission.imageData}
                             alt="Commission Video"
