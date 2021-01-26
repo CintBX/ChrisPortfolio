@@ -61,11 +61,22 @@ class CommissionShowPage extends Component {
           <Container>
             <Row>
               <Col xs={12} sm={12} lg={6} xl={6}>
-                <img
-                  src={`../../${imageData}`}
-                  alt="Commission Display"
-                  style={styles.image}
-                />
+                {
+                  imageData.slice(imageData.length - 3) === "mp4" ?
+                  <video
+                    src={`../../${imageData}`}
+                    alt="Commission Video"
+                    style={styles.image}
+                    autoPlay={true}
+                    loop
+                  />
+                  :
+                  <img
+                    src={`../../${imageData}`}
+                    alt="Commission Display"
+                    style={styles.image}
+                  />
+                }
               </Col>
               <Col className="show-pg-adjust">
                 <h1><span style={styles.softenTone}>Title: </span>{ title }</h1>
