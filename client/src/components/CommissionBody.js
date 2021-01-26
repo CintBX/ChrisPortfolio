@@ -68,7 +68,23 @@ class CommissionBody extends Component {
                   <Col style={styles.cardWrap}>
                     <Card style={styles.card} className="commission-card body-adjust">
                       <Link to={`/show-commission/${commission._id}`}>
-                        <CardImg top style={styles.image} src={commission.imageData} alt="Commission Image" />
+                        {
+                          commission.imageData.slice(commission.imageData.length - 3) === "mp4" ?
+                          <video
+                            src={commission.imageData}
+                            alt="Commission Video"
+                            style={styles.video}
+                            autoPlay={true}
+                            loop
+                          />
+                          :
+                          <CardImg
+                            top
+                            style={styles.image}
+                            src={commission.imageData}
+                            alt="Commission Image" 
+                          />  
+                        }
                         <CardBody>
                           <CardText style={styles.text}>
                             <span style={styles.title}>{ commission.title }</span>
@@ -170,6 +186,9 @@ const styles = {
   image: {
     height: 275,
     width: 250
+  },
+  video: {
+    width: '100%',
   },
   text: {
     color: 'black',
