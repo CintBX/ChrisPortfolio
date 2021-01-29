@@ -73,6 +73,7 @@ class NewCommissionForm extends Component {
       description: "",
       price: "",
       image: ImagePreview,
+      uploadType: "",
       redirectToCommissions: true
     })
   };
