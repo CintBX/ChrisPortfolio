@@ -29,17 +29,17 @@ class NewCommissionForm extends Component {
     };
   };
 
+  static propTypes = {
+    addCommission: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired
+  };
+  
   componentDidMount() {
     if(this.state.redirectToCommissions) {
       this.setState({
         redirectToCommissions: false
       });
     };
-  };
-  
-  static propTypes = {
-    addCommission: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired
   };
 
   handleChange(e) {
