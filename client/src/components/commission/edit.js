@@ -19,9 +19,9 @@ class EditCommissionForm extends Component {
     // this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      title: "",
-      description: "",
-      price: "",
+      title: this.props.commission.showCommission.title,
+      description: this.props.commission.showCommission.description,
+      price: this.props.commission.showCommission.price,
       redirectToShowPage: false
     };
   };
@@ -73,7 +73,7 @@ class EditCommissionForm extends Component {
 
   render() {
     const redirectToShowPage = this.state.redirectToShowPage;
-    const { _id, imageData, title, description, price } = this.props.commission.showCommission;
+    const { _id, imageData, } = this.props.commission.showCommission;
     const { isAuthenticated } = this.props.user;
 
     if(!isAuthenticated) {
@@ -97,7 +97,6 @@ class EditCommissionForm extends Component {
                   maxLength="22"
                   onChange={this.handleChange}
                   value={this.state.title}
-                  placeholder={title}
                 />
               </Col>
             </FormGroup>
@@ -111,7 +110,6 @@ class EditCommissionForm extends Component {
                   id="description"
                   onChange={this.handleChange}
                   value={this.state.description}
-                  placeholder={description}
                 />
               </Col>
             </FormGroup>
@@ -125,7 +123,6 @@ class EditCommissionForm extends Component {
                   id="price"
                   onChange={this.handleChange}
                   value={this.state.price}
-                  placeholder={price}
                 />
               </Col>
             </FormGroup>
