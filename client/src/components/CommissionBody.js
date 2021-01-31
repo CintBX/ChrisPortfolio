@@ -57,7 +57,11 @@ class CommissionBody extends Component {
     const { loading } = this.props.commission;
     const { pager, pageOfCommissions } = this.state;
     if(loading) {
-      return <h1 style={styles.loading}><Spinner style={styles.spinner} color="primary" /></h1>
+      return (
+        <h1 style={styles.loading}>
+          <Spinner style={styles.spinner} color="primary" />
+        </h1>
+      );
     } else {
       return (
         <div>
