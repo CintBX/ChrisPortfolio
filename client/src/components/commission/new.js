@@ -5,12 +5,12 @@ import {
   FormGroup,
   Label,
   Input,
-  Button
+  Button,
+  Spinner
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addCommission } from '../../actions/commissionActions';
-import { Redirect } from 'react-router-dom';
 import ImagePreview from '../../images/ImagePreview.png';
 
 class NewCommissionForm extends Component {
@@ -75,13 +75,25 @@ class NewCommissionForm extends Component {
       image: ImagePreview,
       uploadType: "",
       redirectToCommissions: true
-    })
+    });
+
+    const history = this.props.history;
+    setTimeout(function() {
+      history.push("/");
+    }, 500);
   };
 
   render() {
     const redirectToCommissions = this.state.redirectToCommissions;
     const { isAuthenticated } = this.props.user;
-    
+
+    if(redirectToCommissions) {
+      return (
+        <h1 style={styles.loading}>
+          <Spinner style={styles.spinner} color="primary" />
+        </h1>
+      );
+    };
     if(!isAuthenticated) {
       return (
         <h1 style={styles.accessDenied}>
@@ -175,7 +187,6 @@ class NewCommissionForm extends Component {
               </Col>
             </FormGroup>
           </Form>
-          { redirectToCommissions ? <Redirect to="/" /> : null }
         </div>
       );
     }
@@ -216,6 +227,15 @@ const styles = {
     marginTop: 15,
     width: 300,
     height: 300
+  },
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: 50
+  },
+  spinner: {
+    width: '4em',
+    height: '4em'
   }
 };
 
@@ -225,4 +245,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, {addCommission})(NewCommissionForm);
+export default connect(mapStateToProps, { addCommission })(NewCommissionForm);

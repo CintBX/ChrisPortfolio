@@ -207,7 +207,7 @@ const styles = {
   spinner: {
     width: '4em',
     height: '4em'
-  },
+  }
 };
 
 const mapStateToProps = state => ({
@@ -215,4 +215,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, {showCommission, editCommission})(EditCommissionForm);
+export default connect(mapStateToProps, { showCommission, editCommission })(EditCommissionForm);
