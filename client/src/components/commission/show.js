@@ -35,8 +35,6 @@ class CommissionShowPage extends Component {
         redirectToCommissions: false
       });
     };
-
-    console.log(this.props.commission.showCommission)
   };
 
   handleDelete(id) {

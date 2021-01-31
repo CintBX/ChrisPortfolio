@@ -34,7 +34,6 @@ class CommissionBody extends Component {
   componentDidMount() {
     this.props.getCommissions();
     this.loadPage();
-    console.log(this.props.commission)
   };
 
   componentDidUpdate() {
