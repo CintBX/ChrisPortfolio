@@ -45,6 +45,11 @@ class CommissionShowPage extends Component {
         redirectToCommissions: true
       });
     };
+
+    const history = this.props.history;
+    setTimeout(function() {
+      history.push("/");
+    }, 500);
   };
 
   render() {
@@ -53,8 +58,19 @@ class CommissionShowPage extends Component {
     const { loading } = this.props.commission;
     const { isAuthenticated } = this.props.user;
 
+    if(redirectToCommissions) {
+      return (
+        <h1 style={styles.loading}>
+          <Spinner style={styles.spinner} color="primary" />
+        </h1>
+      );
+    };
     if(loading) {
-      return <h1 style={styles.loading}><Spinner style={styles.spinner} color="primary" /></h1>
+      return (
+        <h1 style={styles.loading}>
+          <Spinner style={styles.spinner} color="primary" />
+        </h1>
+      );
     } else {
       return (
         <div style={styles.container}>
@@ -118,7 +134,6 @@ class CommissionShowPage extends Component {
               </Col>
             </Row>
           </Container>
-          { redirectToCommissions ? <Redirect to="/" /> : null }
         </div>
       )
     }
