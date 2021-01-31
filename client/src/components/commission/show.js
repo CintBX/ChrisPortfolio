@@ -9,7 +9,7 @@ import {
 import { showCommission, deleteCommission } from '../../actions/commissionActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class CommissionShowPage extends Component {
   constructor(props) {
