@@ -5,12 +5,12 @@ import {
   FormGroup,
   Label,
   Input,
-  Button
+  Button,
+  Spinner
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { showCommission, editCommission } from '../../actions/commissionActions';
-import { Redirect } from 'react-router-dom';
 
 class EditCommissionForm extends Component {
   constructor(props) {
@@ -68,14 +68,26 @@ class EditCommissionForm extends Component {
       description: "",
       price: "",
       redirectToShowPage: true
-    })
+    });
+
+    const history = this.props.history;
+    setTimeout(function() {
+      history.push(`/show-commission/${showCommission._id}`);
+    }, 500);
   };
 
   render() {
     const redirectToShowPage = this.state.redirectToShowPage;
-    const { _id, imageData, } = this.props.commission.showCommission;
+    const { imageData } = this.props.commission.showCommission;
     const { isAuthenticated } = this.props.user;
 
+    if(redirectToShowPage) {
+      return (
+        <h1 style={styles.loading}>
+          <Spinner style={styles.spinner} color="primary" />
+        </h1>
+      );
+    };
     if(!isAuthenticated) {
       return (
         <h1 style={styles.accessDenied}>
@@ -146,7 +158,6 @@ class EditCommissionForm extends Component {
               </Col>
             </FormGroup>
           </Form>
-          { redirectToShowPage ? <Redirect to={`/show-commission/${_id}`} /> : null }
         </div>
       );
     }
@@ -187,7 +198,16 @@ const styles = {
     marginTop: 15,
     width: 300,
     height: 300
-  }
+  },
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: 50
+  },
+  spinner: {
+    width: '4em',
+    height: '4em'
+  },
 };
 
 const mapStateToProps = state => ({
