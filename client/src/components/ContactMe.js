@@ -110,7 +110,7 @@ class ContactMe extends Component {
                   style={styles.submitButton}
                 /> :
                 <Alert color="success" style={styles.alert}>
-                  Thanks for your message! I'll reply ASAP
+                  Thanks for your message!
                 </Alert>
               }
             </Col>
